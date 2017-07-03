@@ -1,0 +1,2 @@
+irate(ifHCInOctets{job='snmp',instance='$Device',ifDescr=~'$Interface'}[5m]) * 8 or irate(ifInOctets{job='snmp',instance='$Device',ifDescr=~'$Interface'}[5m]) * 8
+irate(ifHCOutOctets{job='snmp',instance='$Device',ifDescr=~'$Interface'}[5m]) * 8 or irate(ifOutOctets{job='snmp',instance='$Device',ifDescr=~'$Interface'}[5m]) * 8

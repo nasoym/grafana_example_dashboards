@@ -1,0 +1,19 @@
+dump1090_recent_aircraft_observed{job="dump1090", time_period="latest"}
+dump1090_recent_aircraft_with_position{job="dump1090", time_period="latest"}
+dump1090_recent_aircraft_max_range{job="dump1090", time_period="latest"}
+rate(dump1090_messages_total{job="dump1090", time_period="latest"}[1m])
+dump1090_stats_local_peak_signal_strength_dbFS{job="dump1090", time_period="last1min"}
+dump1090_stats_local_signal_strength_dbFS{job="dump1090", time_period="last1min"}
+dump1090_recent_aircraft_observed{job="dump1090", time_period="latest"}
+dump1090_recent_aircraft_with_position{job="dump1090", time_period="latest"}
+dump1090_recent_aircraft_observed{job="dump1090", time_period="latest"} - dump1090_recent_aircraft_with_position{job="dump1090", time_period="latest"}
+dump1090_recent_aircraft_with_multilateration{job="dump1090", time_period="latest"}
+dump1090_recent_aircraft_max_range{job="dump1090"}
+rate(dump1090_messages_total{job="dump1090", time_period="latest"}[1m])
+dump1090_stats_messages_total{job="dump1090", time_period="last1min"} / 60
+dump1090_stats_local_signal_strength_dbFS{job="dump1090", time_period="last1min"}
+dump1090_stats_local_peak_signal_strength_dbFS{job="dump1090", time_period="last1min"}
+dump1090_stats_local_noise_level_dbFS{job="dump1090", time_period="last1min"}
+dump1090_stats_cpu_demod_milliseconds{job="dump1090", time_period="last1min"}
+dump1090_stats_cpu_reader_milliseconds{job="dump1090", time_period="last1min"}
+dump1090_stats_cpu_background_milliseconds{job="dump1090", time_period="last1min"}

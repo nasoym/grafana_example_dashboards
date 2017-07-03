@@ -1,0 +1,74 @@
+count(haproxy_backend_up{backend=~"$backend", instance=~"$host:$port"} == 1)
+count_scalar(haproxy_backend_up{instance=~"$host:$port"} == 0)
+sum(rate(haproxy_backend_http_responses_total{code=~"$code",instance=~"$host:$port"}[5m])) by (code)
+sum(rate(haproxy_backend_http_responses_total{code=~"$code",instance=~"$host:$port"}[5m])) by (code)
+sum(rate(haproxy_frontend_bytes_in_total{instance=~"$host:$port"}[5m])*8) by (instance)
+sum(rate(haproxy_frontend_bytes_out_total{instance=~"$host:$port"}[5m])*8) by (instance)
+sum(rate(haproxy_backend_bytes_in_total{instance=~"$host:$port"}[5m])*8) by (instance)
+sum(rate(haproxy_backend_bytes_out_total{instance=~"$host:$port"}[5m])*8) by (instance)
+sum(deriv(haproxy_frontend_connections_total{instance=~"$host:$port"}[5m])) by (instance)
+sum(deriv(haproxy_backend_connections_total{instance=~"$host:$port"}[5m])) by (instance)
+sum(deriv(haproxy_backend_connection_errors_total{instance=~"$host:$port"}[5m])) by (instance)
+sum(rate(haproxy_frontend_http_requests_total{instance=~"$host:$port"}[5m])) by (instance)
+sum(deriv(haproxy_backend_response_errors_total{instance=~"$host:$port"}[5m])) by (instance)
+sum(deriv(haproxy_frontend_request_errors_total{instance=~"$host:$port"}[5m])) by (instance)
+sum(deriv(haproxy_backend_redispatch_warnings_total{instance=~"$host:$port"}[5m])) by (instance)
+sum(deriv(haproxy_backend_retry_warnings_total{instance=~"$host:$port"}[5m])) by (instance)
+sum(deriv(haproxy_frontend_requests_denied_total{instance=~"$host:$port"}[5m])) by (instance)
+sum(haproxy_backend_current_queue{instance=~"$host:$port"}) by (instance)
+sum(haproxy_frontend_current_sessions{instance=~"$host:$port"}) by (instance)
+sum(haproxy_frontend_current_session_rate{instance=~"$host:$port"}) by (instance)
+sum(haproxy_backend_current_sessions{instance=~"$host:$port"}) by (instance)
+sum(haproxy_backend_current_session_rate{instance=~"$host:$port"}) by (instance)
+rate(haproxy_backend_bytes_in_total{backend=~"$backend",instance=~"$host:$port"}[5m])*8
+rate(haproxy_backend_bytes_out_total{backend=~"$backend",instance=~"$host:$port"}[5m])*8
+rate(haproxy_frontend_bytes_in_total{frontend=~"$frontend",instance=~"$host:$port"}[5m])*8
+rate(haproxy_frontend_bytes_out_total{frontend=~"$frontend",instance=~"$host:$port"}[5m])*8
+deriv(haproxy_backend_connections_total{backend=~"$backend",instance=~"$host:$port"}[5m])
+deriv(haproxy_backend_connection_errors_total{backend=~"$backend",instance=~"$host:$port"}[5m])
+deriv(haproxy_frontend_connections_total{frontend=~"$frontend",instance=~"$host:$port"}[5m])
+deriv(haproxy_backend_max_queue{backend=~"$backend",instance=~"$host:$port"}[5m])
+haproxy_backend_current_queue{backend=~"$backend",instance=~"$host:$port"}
+deriv(haproxy_frontend_http_requests_total{frontend=~"$frontend",instance=~"$host:$port"}[5m])
+deriv(haproxy_frontend_request_errors_total{frontend=~"$frontend", instance=~"$host:$port"}[5m])
+deriv(haproxy_frontend_requests_denied_total{frontend=~"$frontend", instance=~"$host:$port"}[5m])
+deriv(haproxy_backend_redispatch_warnings_total{backend=~"$backend", instance=~"$host:$port"}[5m])
+deriv(haproxy_backend_retry_warnings_total{backend=~"$backend", instance=~"$host:$port"}[5m])
+deriv(haproxy_backend_response_errors_total{backend=~"$backend", instance=~"$host:$port"}[5m])
+rate(haproxy_backend_http_responses_total{backend=~"$backend", code=~"$code",instance=~"$host:$port"}[5m])
+deriv(haproxy_frontend_http_responses_total{frontend=~"$frontend", code=~"$code",instance=~"$host:$port"}[5m])
+haproxy_backend_current_sessions{backend=~"$backend",instance=~"$host:$port"}
+haproxy_frontend_current_sessions{frontend=~"$frontend",instance=~"$host:$port"}
+haproxy_backend_current_session_rate{backend=~"$backend",instance=~"$host:$port"}
+haproxy_frontend_current_session_rate{frontend=~"$frontend",instance=~"$host:$port"}
+haproxy_backend_max_sessions{backend=~"$backend",instance=~"$host:$port"}
+haproxy_backend_limit_sessions{backend=~"$backend",instance=~"$host:$port"}
+haproxy_frontend_max_sessions{frontend=~"$frontend",instance=~"$host:$port"}
+haproxy_frontend_limit_sessions{frontend=~"$frontend",instance=~"$host:$port"}
+haproxy_backend_max_session_rate{backend=~"$backend",instance=~"$host:$port"}
+haproxy_frontend_max_session_rate{frontend=~"$frontend",instance=~"$host:$port"}
+haproxy_frontend_limit_session_rate{frontend=~"$frontend",instance=~"$host:$port"}
+haproxy_backend_up{backend=~"$backend", instance=~"$host:$port"}
+haproxy_backend_weight{backend=~"$backend", instance=~"$host:$port"}
+rate(haproxy_server_bytes_in_total{backend=~"$backend",server=~"$server",instance=~"$host:$port"}[5m])*8
+rate(haproxy_server_bytes_out_total{backend=~"$backend",server=~"$server",instance=~"$host:$port"}[5m])*8
+deriv(haproxy_server_connections_total{backend=~"$backend",instance=~"$host:$port"}[5m])
+deriv(haproxy_server_max_queue{backend=~"$backend",server=~"$server",instance=~"$host:$port"}[5m])
+deriv(haproxy_server_current_queue{backend=~"$backend",server=~"$server",instance=~"$host:$port"}[5m])
+sum(deriv(haproxy_server_http_responses_total{backend=~"$backend",server=~"$server",instance=~"$host:$port"}[5m])) by (server)
+deriv(haproxy_server_retry_warnings_total{backend=~"$backend", instance=~"$host:$port"}[5m])
+haproxy_server_redispatch_warnings_total{backend=~"$backend",server=~"$server",instance=~"$host:$port"}
+deriv(haproxy_server_response_errors_total{backend=~"$backend",server=~"$server",instance=~"$host:$port"}[5m])
+deriv(haproxy_server_http_responses_total{backend=~"$backend",server=~"$server",code=~"$code",instance=~"$host:$port"}[5m])
+haproxy_server_current_sessions{backend=~"$backend",instance=~"$host:$port"}
+haproxy_server_current_session_rate{backend=~"$backend",instance=~"$host:$port"}
+haproxy_server_max_session_rate{backend=~"$backend",server=~"$server",instance=~"$host:$port"}
+haproxy_server_max_sessions{backend=~"$backend",server=~"$server",instance=~"$host:$port"}
+haproxy_server_downtime_seconds_total{backend=~"$backend",instance=~"$host:$port"}
+increase(haproxy_server_check_failures_total{backend=~"$backend",server=~"$server",instance=~"$host:$port"}[5m])
+deriv(haproxy_server_connection_errors_total{backend=~"$backend",server=~"$server",instance=~"$host:$port"}[5m])
+haproxy_server_check_duration_milliseconds{backend=~"$backend",server=~"$server",instance=~"$host:$port"}
+haproxy_server_up{backend=~"$backend",instance=~"$host:$port"}
+haproxy_server_weight{backend=~"$backend",instance=~"$host:$port"}
+haproxy_exporter_csv_parse_failures{instance=~"$host:$port"}
+haproxy_exporter_total_scrapes{instance=~"$host:$port"}

@@ -1,0 +1,11 @@
+ceph_osd_up{osd="$osd"}
+ceph_osd_in{osd="$osd"}
+ceph_osds
+ceph_osd_pgs{osd=~"$osd"}
+avg(ceph_osd_pgs)
+ceph_osd_utilization{osd="$osd"}
+ceph_osd_perf_apply_latency_seconds{osd=~"$osd"}
+ceph_osd_perf_commit_latency_seconds{osd=~"$osd"}
+ceph_osd_avail_bytes{osd=~"$osd"}
+ceph_osd_used_bytes{osd=~"$osd"}
+ceph_osd_variance{osd=~"$osd"}

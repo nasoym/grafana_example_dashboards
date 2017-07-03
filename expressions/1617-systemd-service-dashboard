@@ -1,0 +1,6 @@
+sum(node_systemd_unit_state) by (state)
+sum(node_systemd_unit_state{instance=~"^$Node$", state="activating"})
+sum(node_systemd_unit_state{instance=~"^$Node$", state="active"})
+sum(node_systemd_unit_state{instance=~"^$Node$", state="failed"})
+sum(node_systemd_unit_state{instance=~"^$Node$", state="inactive"})
+sum(node_systemd_unit_state{instance=~"^.*$",state="failed"}) by (name, state) > 0

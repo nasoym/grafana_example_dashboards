@@ -1,0 +1,26 @@
+(avg  (irate(node_cpu{mode="idle", instance=~"$server"}[5m])) * 100)
+(avg  (irate(node_cpu{mode="iowait", instance=~"$server"}[5m])) * 100)
+(avg  (irate(node_cpu{mode="user", instance=~"$server"}[5m])) * 100)
+(avg  (irate(node_cpu{mode="system", instance=~"$server"}[5m])) * 100)
+(avg  (irate(node_cpu{mode="softirq", instance=~"$server"}[5m])) * 100)
+(avg  (irate(node_cpu{mode="irq", instance=~"$server"}[5m])) * 100)
+(avg  (irate(node_cpu{mode="steal", instance=~"$server"}[5m])) * 100)
+(avg  (irate(node_cpu{mode="guest", instance=~"$server"}[5m])) * 100)
+(avg  (irate(node_cpu{mode="nice", instance=~"$server"}[5m])) * 100)
+100 - (avg  (irate(node_cpu{mode="idle", instance=~"$server"}[5m])) * 100) - (avg  (irate(node_cpu{mode="user", instance=~"$server"}[5m])) * 100) -(avg  (irate(node_cpu{mode="system", instance=~"$server"}[5m])) * 100) - (avg  (irate(node_cpu{mode="softirq", instance=~"$server"}[5m])) * 100) - (avg  (irate(node_cpu{mode="irq", instance=~"$server"}[5m])) * 100) - (avg  (irate(node_cpu{mode="steal", instance=~"$server"}[5m])) * 100) - (avg  (irate(node_cpu{mode="guest", instance=~"$server"}[5m])) * 100) - (avg  (irate(node_cpu{mode="nice", instance=~"$server"}[5m])) * 100)
+node_load1{instance=~"$server"}
+node_load5{instance=~"$server"}
+node_load15{instance=~"$server"}
+node_memory_Cached{instance=~"$server"}
+sum by (instance) (irate(node_disk_bytes_read{device=~"$disk1", instance=~"$server"}[5m]))
+sum by (instance) (irate(node_disk_bytes_written{device=~"$disk1", instance=~"$server"}[5m]))
+sum by (instance) (irate(node_disk_bytes_read{device=~"$disk2", instance=~"$server"}[5m]))
+sum by (instance) (irate(node_disk_bytes_written{device=~"$disk2", instance=~"$server"}[5m]))
+irate(node_network_receive_bytes{instance=~"$server",device="p4p2"}[5m])
+irate(node_network_transmit_bytes{instance=~"$server",device="p4p2"}[5m])
+node_memory_MemTotal{instance=~"$server"} - node_memory_MemFree{instance=~"$server"}
+(node_memory_MemFree{instance=~"$server"} / node_memory_MemTotal{instance=~"$server"}) * 100
+node_memory_MemFree{instance=~"$server"} /(1024*1024*1024)
+node_memory_MemTotal{instance=~"$server"}/(1024*1024*1024)
+node_memory_MemFree{instance=~"$server"}
+node_memory_MemAvailable{instance=~"$server"}

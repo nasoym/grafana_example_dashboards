@@ -1,0 +1,100 @@
+State_OFFLINE_total{servername=~"^$instance"}
+State_ONLINE_total{servername=~"^$instance"}
+State_OFFLINE_total{servername=~"^$instance"}
+State_SUSPECT_total{servername=~"^$instance"}
+State_RECOVERING_total{servername=~"^$instance"}
+State_RECOVERY_PENDING_total{servername=~"^$instance"}
+State_RESTORING_total{servername=~"^$instance"}
+Performance_metrics_Point_In_Time_Recovery{servername=~"^$instance"}
+Recovery_Model_FULL_total{servername=~"^$instance"}
+Recovery_Model_BULK_LOGGED_total{servername=~"^$instance"}
+Recovery_Model_SIMPLE_total{servername=~"^$instance"}
+avg(CPU_____SystemIdle{servername=~"^$instance"})
+avg(CPU_____SQL_process{servername=~"^$instance"})
+avg(CPU_____External_process{servername=~"^$instance"})
+avg(Performance_metrics_Signal_wait____{servername=~"^$instance"})
+avg(Performance_metrics_Average_tasks{servername=~"^$instance"})
+avg(Performance_metrics_Average_runnable_tasks{servername=~"^$instance"})
+Target_Server_Memory__KB____Memory_Manager{servername=~"^$instance"}
+Total_Server_Memory__KB____Memory_Manager{servername=~"^$instance"}
+Performance_metrics_Total_target_memory_ratio{servername=~"^$instance"}
+Performance_metrics_Page_File_Usage____{servername=~"^$instance"}
+Page_life_expectancy___Buffer_Manager{servername=~"^$instance"}
+Performance_metrics_Buffer_pool_rate__bytes_sec_{servername=~"^$instance"}
+Free_list_stalls_sec___Buffer_Manager{servername=~"^$instance"}
+Memory_Grants_Pending___Memory_Manager{servername=~"^$instance"}
+Rows_reads__bytes_sec__Total{servername=~"^$instance"}
+Log_reads__bytes_sec__Total{servername=~"^$instance"}
+Rows_writes__bytes_sec__Total{servername=~"^$instance"}
+Log_writes__bytes_sec__Total{servername=~"^$instance"}
+rate(Performance_metrics_Average_pending_disk_IO{servername=~"^$instance"}[5m])
+Network_IO_waits___Average_wait_time__ms____Wait_Statistics{servername=~"^$instance"}
+User_Connections___General_Statistics{servername=~"^$instance"}
+Performance_metrics_Connection_memory_per_connection__bytes_{servername=~"^$instance"}
+Data_File_s__Size__KB_____Total___Databases{servername=~"^$instance"}
+Data_File_s__Size__KB____mssqlsystemresource___Databases{servername=~"^$instance"}
+Percent_Log_Used____Total___Databases{servername=~"^$instance"}
+Percent_Log_Used___mssqlsystemresource___Databases{servername=~"^$instance"}
+Backup_Restore_Throughput_sec____Total___Databases{servername=~"^$instance"}
+Batch_Requests_sec___SQL_Statistics{servername=~"^$instance"}
+User_Connections___General_Statistics{servername=~"^$instance"}
+Logins_sec___General_Statistics{servername=~"^$instance"}
+Logouts_sec___General_Statistics{servername=~"^$instance"}
+SQL_Compilations_sec___SQL_Statistics{servername=~"^$instance"}
+SQL_Re_Compilations_sec___SQL_Statistics{servername=~"^$instance"}
+Processes_blocked___General_Statistics{servername=~"^$instance"}
+Transactions_sec____Total___Databases{servername=~"^$instance"}
+Write_Transactions_sec____Total___Databases{servername=~"^$instance"}
+Log_Flushes_sec____Total___Databases{servername=~"^$instance"}
+Log_Flush_Wait_Time____Total___Databases{servername=~"^$instance"}
+Lock_Timeouts_sec____Total___Locks{servername=~"^$instance"}
+Number_of_Deadlocks_sec____Total___Locks{servername=~"^$instance"}
+Lock_Waits_sec____Total___Locks{servername=~"^$instance"}
+Latch_Waits_sec___Latches{servername=~"^$instance"}
+Full_Scans_sec___Access_Methods{servername=~"^$instance"}
+Index_Searches_sec___Access_Methods{servername=~"^$instance"}
+Page_Splits_sec___Access_Methods{servername=~"^$instance"}
+Page_lookups_sec___Buffer_Manager{servername=~"^$instance"}
+Page_reads_sec___Buffer_Manager{servername=~"^$instance"}
+Page_writes_sec___Buffer_Manager{servername=~"^$instance"}
+Readahead_pages_sec___Buffer_Manager{servername=~"^$instance"}
+Lazy_writes_sec___Buffer_Manager{servername=~"^$instance"}
+Checkpoint_pages_sec___Buffer_Manager{servername=~"^$instance"}
+SQL_Cache_Memory__KB____Memory_Manager{servername=~"^$instance"}
+Optimizer_Memory__KB____Memory_Manager{servername=~"^$instance"}
+Log_Pool_Memory__KB____Memory_Manager{servername=~"^$instance"}
+Lock_Memory__KB____Memory_Manager{servername=~"^$instance"}
+Database_Cache_Memory__KB____Memory_Manager{servername=~"^$instance"}
+Connection_Memory__KB____Memory_Manager{servername=~"^$instance"}
+Log_Flushes_sec____Total___Databases{servername=~"^$instance"}
+Log_Pool_Cache_Misses_sec____Total___Databases{servername=~"^$instance"}
+Log_Pool_Disk_Reads_sec____Total___Databases{servername=~"^$instance"}
+Log_Pool_Requests_sec____Total___Databases{servername=~"^$instance"}
+label_replace({__name__=~"^Wait_time__ms__.*",__name__!="Wait_time__ms__Total",type="Wait stats",servername=~"^$instance"}, "name", "$1", "__name__", "Wait_time__ms__(.*)")
+label_replace({__name__=~"^Wait_tasks_.*",__name__!="Wait_tasks_Total",type="Wait stats",servername=~"^$instance"}, "name", "$1", "__name__", "Wait_tasks_(.*)")
+label_replace({__name__=~"^Memory_breakdown_____.*",type="Memory clerk",servername=~"^$instance"}, "name", "$1", "__name__", "Memory_breakdown_____(.*)")
+label_replace({__name__=~"^Memory_breakdown__bytes__.*",type="Memory clerk",servername=~"^$instance"}, "name", "$1", "__name__", "Memory_breakdown__bytes__(.*)")
+label_replace({__name__=~"^Rows_size__bytes__.*",type="Database size",servername=~"^$instance"}, "db", "$1", "__name__", "Rows_size__bytes__(.*)")
+label_replace({__name__=~"^Log_size__bytes__.*",type="Database size",servername=~"^$instance"}, "db", "$1", "__name__", "Log_size__bytes__(.*)")
+label_replace({__name__=~"^Rows_reads__bytes_sec__.*",type="Database IO",servername=~"^$instance"}, "name", "$1", "__name__", "Rows_reads__bytes_sec__(.*)")
+label_replace({__name__=~"^Log_reads__bytes_sec__.*",type="Database IO",servername=~"^$instance"}, "name", "$1", "__name__", "Log_reads__bytes_sec__(.*)")
+label_replace({__name__=~"^Rows_writes__bytes_sec__.*",type="Database IO",servername=~"^$instance"}, "name", "$1", "__name__", "Rows_writes__bytes_sec__(.*)")
+label_replace({__name__=~"^Log_writes__bytes_sec__.*",type="Database IO",servername=~"^$instance"}, "name", "$1", "__name__", "Log_writes__bytes_sec__(.*)")
+label_replace({__name__=~"^Rows_read_latency__ms__.*",type="Database stats",servername=~"^$instance"}, "name", "$1", "__name__", "Rows_read_latency__ms__(.*)")
+label_replace({__name__=~"^Log_read_latency__ms__.*",type="Database stats",servername=~"^$instance"}, "name", "$1", "__name__", "Log_read_latency__ms__(.*)")
+label_replace({__name__=~"^Rows_write_latency__ms__.*",type="Database stats",servername=~"^$instance"}, "name", "$1", "__name__", "Rows_write_latency__ms__(.*)")
+label_replace({__name__=~"^Log_write_latency__ms__.*",type="Database stats",servername=~"^$instance"}, "name", "$1", "__name__", "Log_write_latency__ms__(.*)")
+label_replace({__name__=~"^Volume_used_space__bytes__.*", type="OS Volume space", servername=~"^$instance"}, "name", "$1", "__name__", "Volume_used_space__bytes__(.*)")
+label_replace({__name__=~"^Volume_available_space__bytes__.*",type="OS Volume space",servername=~"^$instance"}, "name", "$1", "__name__", "Volume_available_space__bytes__(.*)")
+label_replace({__name__=~"^Volume_used_space_____.*", type="OS Volume space", servername=~"^$instance"}, "name", "$1", "__name__", "Volume_used_space_____(.*)")
+label_replace({__name__=~"^Volume_used_space_____.*", type="OS Volume space", servername=~"^$instance"}, "name", "$1", "__name__", "Volume_used_space_____(.*)")
+Performance_metrics_Page_split_per_batch_request{servername=~"^$instance"}
+Performance_metrics_Sql_compilation_per_batch_request{servername=~"^$instance"}
+Performance_metrics_Sql_recompilation_per_batch_request{servername=~"^$instance"}
+Performance_metrics_Readahead_per_page_read{servername=~"^$instance"}
+CPU_____SQL_process{servername=~"^$instance"}
+CPU_____External_process{servername=~"^$instance"}
+Bytes_Sent_to_Replica_sec____Total___Availability_Replica{servername=~"^$instance"}
+Bytes_Received_from_Replica_sec____Total___Availability_Replica{servername=~"^$instance"}
+Transaction_Delay____Total___Database_Replica{servername=~"^$instance"}
+Mirrored_Write_Transactions_sec____Total___Database_Replica{servername=~"^$instance"}

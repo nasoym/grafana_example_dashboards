@@ -1,0 +1,7 @@
+count(container_last_seen{image!=""})
+sum(container_memory_usage_bytes{image!=""})/1024/1024
+sum(rate(container_cpu_user_seconds_total{image!=""}[5m]) * 100)
+rate(container_cpu_user_seconds_total{image!=""}[5m]) * 100
+container_memory_usage_bytes{image!=""}
+irate(container_network_receive_bytes_total{image!=""}[5m])
+irate(container_network_transmit_bytes_total{image!=""}[5m])

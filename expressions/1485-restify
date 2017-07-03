@@ -1,0 +1,9 @@
+sum(rate(restify_path_count{instance=~"$servers"}[1m]))
+sort_desc(sum(rate(restify_path_count{instance=~"$servers"}[10s])) by (path))
+histogram_quantile(0.95, sum(rate(restify_path_duration_bucket{instance=~"$servers"}[10s])) by (le))
+histogram_quantile(0.95, sum(rate(restify_path_duration_bucket{instance=~"$servers"}[10s])) by (path, le))
+sum(restify_status_codes{instance=~"$servers"}) by (status_code)
+restify_path_count{status_code="404",instance=~"$instances"}
+restify_path_count{status_code="500",instance=~"$servers"}
+sum(rate(restify_status_codes{instance=~"$servers"}[10s])) by (status_code)
+histogram_quantile(0.95, sum(rate(restify_path_duration_bucket{instance=~"$servers"}[10s])) by (status_code, le))

@@ -1,0 +1,19 @@
+max(irate(mattermost_process_cpu_seconds_total{job=~"$server"}[1m])* 100)
+sum(rate(mattermost_post_total{job=~"$server"}[1m])*50)
+sum(rate(mattermost_http_errors_total{job=~"$server"}[1m])*50)
+sum(mattermost_http_websockets_total{job=~"$server"})
+sum(mattermost_db_master_connections_total{job=~"$server"})
+sum(go_memstats_alloc_bytes{job=~"$server"})/1024/1024
+irate(mattermost_post_total{job=~"$server"}[1m])*10
+sum(irate(mattermost_post_total{job=~"$server"}[1m])*10)
+irate(mattermost_http_errors_total{job=~"$server"}[1m])*10
+sum(irate(mattermost_http_errors_total{job=~"$server"}[1m])*10)
+1000.0 * rate(mattermost_http_request_duration_seconds_sum{job=~"$server"}[1m]) /   rate(mattermost_http_request_duration_seconds_count{job=~"$server"}[1m])
+mattermost_db_master_connections_total{job=~"$server"}
+sum(mattermost_db_master_connections_total{job=~"$server"})
+1000.0 * rate(mattermost_cluster_cluster_request_duration_seconds_sum{job=~"$server"}[1m]) /   rate(mattermost_cluster_cluster_request_duration_seconds_count{job=~"$server"}[1m])
+mattermost_db_read_replica_connections_total{job=~"$server"}
+sum(mattermost_db_read_replica_connections_total{job=~"$server"})
+irate(mattermost_process_cpu_seconds_total{job=~"$server"}[1m])* 100
+go_goroutines{job=~"$server"}
+sum(go_goroutines{job=~"$server"})

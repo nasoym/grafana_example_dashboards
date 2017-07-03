@@ -1,0 +1,9 @@
+histogram_quantile(0.9, sum(rate(device_temperature_histogram_temperature_c_bucket[5m])) by (le, device_info))
+avg(device_temperature_gauge_temperature_c)
+stddev(device_temperature_gauge_temperature_c) + avg(device_temperature_gauge_temperature_c)
+avg(device_temperature_gauge_temperature_c) - stddev(device_temperature_gauge_temperature_c)
+device_temperature_gauge_temperature_c
+avg(device_fan_speed_gauge_speed_rpm) by (device_info)
+histogram_quantile(0.9, sum(rate(device_fan_speed_histogram_speed_rpm_bucket[5m])) by (le, device_info))
+max(device_voltage_gauge_voltage) by (device_info)
+avg(device_voltage_gauge_voltage) by (device_info)

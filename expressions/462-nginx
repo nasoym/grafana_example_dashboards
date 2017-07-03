@@ -1,0 +1,6 @@
+sum(irate(nginx_http_requests_total{role=~"$role",status=~"$status",host!="127.0.0.1"}[5m])) by (status)
+sum(irate(nginx_http_requests_total{role=~"$role",status=~"$status",host!="127.0.0.1"}[5m])) by (alias,status)
+(sum(rate(nginx_http_request_duration_seconds_bucket{role="$role",host!="127.0.0.1",le="0.01"}[1m]))+sum(rate(nginx_http_request_duration_seconds_bucket{role="$role",host!="127.0.0.1",le="0.01"}[1m]))) / 2 / sum(rate(nginx_http_request_duration_seconds_count{role="$role",host!="127.0.0.1"}[1m]))
+sum(rate(nginx_http_request_duration_seconds_sum{role="$role",host!="127.0.0.1"}[1m])) / sum(rate(nginx_http_request_duration_seconds_count{role="$role",host!="127.0.0.1"}[1m]))
+sum(rate(nginx_http_request_duration_seconds_sum{role="$role",host!="127.0.0.1"}[1m])) by (alias) / sum(rate(nginx_http_request_duration_seconds_count{role="$role",host!="127.0.0.1"}[1m])) by (alias)
+count(sum(nginx_http_request_duration_seconds_count{host!="127.0.0.1",role="$role"}) by (alias))

@@ -1,0 +1,3 @@
+count(rancher_host_state{name=~"$host"} == 1) by (state)
+rancher_stack_health_status{name="$stack", health_state="healthy"}
+rancher_service_health_status{health_state="healthy", name="$service"}

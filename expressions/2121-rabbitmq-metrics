@@ -1,0 +1,18 @@
+rabbitmq_up
+rabbitmq_running
+rabbitmq_exchangesTotal
+rabbitmq_channelsTotal
+rabbitmq_consumersTotal
+rabbitmq_connectionsTotal
+rabbitmq_queuesTotal
+sum by (vhost)(rabbitmq_queue_messages_ready)
+sum by (vhost)(rabbitmq_queue_messages_published_total)
+sum by (vhost)(rabbitmq_queue_messages_delivered_total)
+sum by (vhost)(rabbitmq_queue_messages_unacknowledged)
+rabbitmq_queue_messages
+rabbitmq_node_mem_used
+rabbitmq_node_mem_limit
+rabbitmq_fd_used
+rabbitmq_fd_total
+rabbitmq_sockets_used
+rabbitmq_sockets_total

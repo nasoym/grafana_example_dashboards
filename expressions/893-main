@@ -1,0 +1,51 @@
+time() - node_boot_time{instance=~"$server:.*"}
+count(rate(container_last_seen{name=~".+"}[$interval]))
+min((node_filesystem_size{fstype=~"xfs|ext4",instance=~"$server:.*"} - node_filesystem_free{fstype=~"xfs|ext4",instance=~"$server:.*"} )/ node_filesystem_size{fstype=~"xfs|ext4",instance=~"$server:.*"})
+((node_memory_MemTotal{instance=~"$server:.*"} - node_memory_MemAvailable{instance=~"$server:.*"}) / node_memory_MemTotal{instance=~"$server:.*"}) * 100
+(node_memory_SwapTotal{instance=~'$server:.*'} - node_memory_SwapFree{instance=~'$server:.*'})
+node_load1{instance=~"$server:.*"} / count by(job, instance)(count by(job, instance, cpu)(node_cpu{instance=~"$server:.*"}))
+sum(rate(container_network_receive_bytes_total{id="/"}[$interval])) by (id)
+- sum(rate(container_network_transmit_bytes_total{id="/"}[$interval])) by (id)
+sum(rate(container_cpu_system_seconds_total[1m]))
+sum(rate(container_cpu_system_seconds_total{name=~".+"}[1m]))
+sum(rate(container_cpu_system_seconds_total{id="/"}[1m]))
+sum(rate(process_cpu_seconds_total[$interval])) * 100
+sum(rate(container_cpu_system_seconds_total{name=~".+"}[1m])) + sum(rate(container_cpu_system_seconds_total{id="/"}[1m])) + sum(rate(process_cpu_seconds_total[1m]))
+node_load1{instance=~"$server:.*"} / count by(job, instance)(count by(job, instance, cpu)(node_cpu{instance=~"$server:.*"}))
+node_filesystem_size{fstype="aufs"} - node_filesystem_free{fstype="aufs"}
+container_memory_rss{name=~".+"}
+sum(container_memory_rss{name=~".+"})
+container_memory_usage_bytes{name=~".+"}
+container_memory_rss{id="/"}
+sum(container_memory_rss)
+node_memory_Buffers
+node_memory_MemFree
+node_memory_MemAvailable
+node_memory_MemTotal - node_memory_MemAvailable
+node_memory_Inactive
+node_memory_KernelStack
+node_memory_Active
+node_memory_MemTotal - (node_memory_Active + node_memory_MemFree + node_memory_Inactive)
+node_memory_MemFree + node_memory_Inactive 
+container_memory_rss{name=~".+"}
+node_memory_Inactive + node_memory_MemFree + node_memory_MemAvailable
+-sum(rate(node_disk_bytes_read[$interval])) by (device)
+sum(rate(node_disk_bytes_written[$interval])) by (device)
+sum(rate(container_network_receive_bytes_total{name=~".+"}[$interval])) by (name)
+- rate(container_network_transmit_bytes_total{name=~".+"}[$interval])
+sum(rate(container_network_transmit_bytes_total{name=~".+"}[$interval])) by (name)
+rate(container_network_transmit_bytes_total{id="/"}[$interval])
+sum(rate(container_cpu_usage_seconds_total{name=~".+"}[$interval])) by (name) * 100
+sum(container_memory_rss{name=~".+"}) by (name)
+container_memory_usage_bytes{name=~".+"}
+sum(container_memory_swap{name=~".+"}) by (name)
+container_memory_usage_bytes{name=~".+"}
+sum(container_spec_memory_limit_bytes{name=~".+"} - container_memory_usage_bytes{name=~".+"}) by (name) 
+sum(container_spec_memory_limit_bytes{name=~".+"}) by (name) 
+container_memory_usage_bytes{name=~".+"}
+sum(100 - ((container_spec_memory_limit_bytes{name=~".+"} - container_memory_usage_bytes{name=~".+"})  * 100 / container_spec_memory_limit_bytes{name=~".+"}) ) by (name) 
+sum(container_spec_memory_limit_bytes{name=~".+"}) by (name) 
+container_memory_usage_bytes{name=~".+"}
+sum(container_spec_memory_limit_bytes{name=~".+"} - container_memory_usage_bytes{name=~".+"}) by (name) 
+sum(container_spec_memory_limit_bytes{name=~".+"}) by (name) 
+container_memory_usage_bytes{name=~".+"}

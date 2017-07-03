@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -eufo pipefail
-trap 'echo "$0: line ${LINENO}: exiting because of error";exit 1' ERR
+trap 'echo "$0: line ${LINENO}: exiting because of error" >&2 ;exit 1' ERR
 
 while getopts "a:h?" options; do case $options in
   a) a="$OPTARG" ;;
@@ -17,7 +17,6 @@ elif [[ "$1" == "load_all" ]];then shift
     | $0 html2json \
     | $0 json2url \
     | parallel \
-      -j 200% \
       -v \
       -C ' ' \
       "$0 download {1} {2}"

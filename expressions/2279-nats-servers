@@ -1,0 +1,9 @@
+gnatsd_varz_cpu
+gnatsd_varz_mem
+gnatsd_varz_in_bytes
+gnatsd_varz_in_msgs
+gnatsd_varz_out_bytes
+gnatsd_varz_out_msgs
+gnatsd_varz_connections
+gnatsd_varz_subscriptions
+gnatsd_varz_slow_consumers

@@ -1,0 +1,11 @@
+irate(haproxy_frontend_http_requests_total{frontend=~"$frontend", alias="$alias"}[180s])
+irate(haproxy_frontend_http_responses_total{frontend=~"$frontend", code=~"$code", alias="$alias"}[180s])
+irate(haproxy_frontend_request_errors_total{frontend=~"$frontend", alias="$alias"}[180s])
+irate(haproxy_frontend_requests_denied_total{frontend=~"$frontend", alias="$alias"}[180s])
+irate(haproxy_frontend_bytes_in_total{frontend=~"$frontend", alias="$alias"}[180s])
+irate(haproxy_frontend_bytes_out_total{frontend=~"$frontend", alias="$alias"}[180s])
+irate(haproxy_frontend_connections_total{frontend=~"$frontend", alias="$alias"}[180s])
+haproxy_frontend_current_sessions{frontend=~"$frontend", alias="$alias"}
+haproxy_frontend_current_session_rate{frontend=~"$frontend", alias="$alias"}
+haproxy_frontend_max_sessions{frontend=~"$frontend", alias="$alias"}
+haproxy_frontend_max_session_rate{frontend=~"$frontend", alias="$alias"}

@@ -1,0 +1,13 @@
+rate(jenkins_job_building_duration_count[1m])
+jenkins_job_queuing_duration
+rate(jenkins_job_queuing_duration_count[1m])
+(vm_memory_total_max{job="jenkins"} - vm_memory_total_used{job="jenkins"}) / vm_memory_total_max{job="jenkins"} * 100.0
+vm_uptime_milliseconds{job="jenkins"}
+jenkins_health_check_score
+jenkins_plugins_failed
+jenkins_node_offline_value
+jenkins_queue_size_value
+jenkins_executor_free_value
+avg(jenkins_job_building_duration_sum/jenkins_job_building_duration_count)
+jenkins_executor_in_use_value
+vm_cpu_load{job="jenkins"}

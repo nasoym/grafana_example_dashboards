@@ -1,0 +1,16 @@
+mist_cpu{instance="$srv"}/10
+(mist_mem_used{instance="$srv"}+mist_shm_used{instance="$srv"}) / mist_mem_total{instance="$srv"} * 100
+mist_sessions_total{instance="$srv",sessType="viewers"}
+mist_sessions_total{instance="$srv",sessType="incoming"}
+mist_sessions_total{instance="$srv",sessType="outgoing"}
+mist_sessions_count{instance="$srv",sessType="viewers"}
+mist_cpu{instance="$srv"}/10
+mist_mem_used{instance="$srv"} / mist_mem_total{instance="$srv"} * 100
+mist_mem_used{instance="$srv"}
+mist_shm_used{instance="$srv"}
+mist_shm_used{instance="$srv"} / mist_shm_total{instance="$srv"} * 100
+rate(mist_sessions_count{instance="$srv"}[$bwint])
+rate(mist_logs{instance="$srv"}[$bwint])
+mist_sessions_total{instance="$srv"}
+rate(mist_bw_total{instance="$srv",direction="down"}[$bwint])*8
+rate(mist_bw_total{instance="$srv",direction="up"}[$bwint])*8

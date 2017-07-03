@@ -1,0 +1,4 @@
+time() - process_start_time_seconds{job="traefik"}
+traefik_requests_total{service="http"}
+traefik_request_duration_seconds_sum{service="http"}
+traefik_requests_total{service!~"http"}

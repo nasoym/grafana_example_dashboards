@@ -1,0 +1,16 @@
+process_resident_memory_bytes{job="$job"}
+process_virtual_memory_bytes{job="$job"}
+rate(process_resident_memory_bytes{job="$job"}[$interval])
+deriv(process_virtual_memory_bytes{job="$job"}[$interval])
+go_memstats_alloc_bytes{job="$job"}
+rate(go_memstats_alloc_bytes_total{job="$job"}[30s])
+go_memstats_stack_inuse_bytes{job="$job"}
+go_memstats_heap_inuse_bytes{job="$job"}
+deriv(go_memstats_alloc_bytes{job="$job"}[$interval])
+rate(go_memstats_alloc_bytes_total{job="$job"}[$interval])
+deriv(go_memstats_stack_inuse_bytes{job="$job"}[$interval])
+deriv(go_memstats_heap_inuse_bytes{job="$job"}[$interval])
+process_open_fds{job="$job"}
+deriv(process_open_fds{job="$job"}[$interval])
+go_goroutines{job="$job"}
+go_gc_duration_seconds{job="$job"}

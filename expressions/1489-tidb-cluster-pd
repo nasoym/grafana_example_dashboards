@@ -1,0 +1,40 @@
+pd_cluster_status{instance="$instance",type="storage_capacity"}
+pd_cluster_status{instance="$instance",type="storage_size"}
+pd_cluster_status{instance="$instance",type="region_count"}
+holt_winters(pd_cluster_status{instance="$instance",type="leader_balance_ratio"}[5m], 0.8, 0.1)
+holt_winters(pd_cluster_status{instance="$instance",type="region_balance_ratio"}[5m], 0.2, 0.1)
+pd_cluster_status{instance="$instance",type="store_up_count"}
+pd_cluster_status{instance="$instance",type="store_down_count"}
+pd_cluster_status{instance="$instance",type="store_offline_count"}
+pd_cluster_status{instance="$instance",type="store_tombstone_count"}
+pd_cluster_status{instance="$instance",type="storage_size"}
+avg(pd_cluster_status{type="storage_size"}) / avg(pd_cluster_status{type="storage_capacity"})
+pd_cluster_status{instance="$instance",type="region_count"}
+sum(delta(pd_schedule_operators_count{instance="$instance"}[1m])) by (type)
+pd_cluster_status{instance="$instance",type="leader_balance_ratio"}
+min(pd_cluster_status{type="leader_balance_ratio"})
+pd_cluster_status{instance="$instance",type="region_balance_ratio"}
+min(pd_cluster_status{type="region_balance_ratio"})
+sum(rate(grpc_server_handling_seconds_count{instance="$instance"}[1m])) by (grpc_method)
+histogram_quantile(0.99, sum(rate(grpc_server_handling_seconds_bucket{instance="$instance"}[5m])) by (grpc_method, le))
+histogram_quantile(0.9999, sum(rate(grpc_server_handling_seconds_sum{instance="$instance"}[5m])) by (grpc_method, le))
+rate(grpc_server_handling_seconds_sum{instance="$instance"}[30s]) / rate(grpc_server_handling_seconds_count{instance="$instance"}[30s])
+delta(etcd_disk_wal_fsync_duration_seconds_count[1m])
+sum(rate(pd_txn_handle_txns_duration_seconds_count[5m])) by (instance, result)
+histogram_quantile(0.99, sum(rate(pd_txn_handle_txns_duration_seconds_bucket[5m])) by (instance, result, le))
+histogram_quantile(0.9999, sum(rate(pd_txn_handle_txns_duration_seconds_bucket[1m])) by (instance, result, le))
+rate(pd_txn_handle_txns_duration_seconds_sum[30s]) / rate(pd_txn_handle_txns_duration_seconds_count[30s])
+histogram_quantile(0.99, sum(rate(etcd_disk_wal_fsync_duration_seconds_bucket[5m])) by (instance, le))
+histogram_quantile(0.9999, sum(rate(etcd_disk_wal_fsync_duration_seconds_bucket[1m])) by (instance, le))
+rate(etcd_disk_wal_fsync_duration_seconds_sum[30s]) / rate(etcd_disk_wal_fsync_duration_seconds_count[30s])
+histogram_quantile(0.99, sum(rate(etcd_network_peer_round_trip_time_seconds_bucket[5m])) by (instance, le))
+histogram_quantile(0.9999, sum(rate(etcd_network_peer_round_trip_time_seconds_bucket[5m])) by (instance, le))
+sum(rate(pd_client_request_handle_requests_duration_seconds_count[1m])) by (type)
+histogram_quantile(0.98, sum(rate(pd_client_request_handle_requests_duration_seconds_bucket[30s])) by (type, le))
+avg(rate(pd_client_request_handle_requests_duration_seconds_sum[30s])) by (type) /  avg(rate(pd_client_request_handle_requests_duration_seconds_count[30s])) by (type)
+sum(rate(tikv_pd_msg_send_duration_seconds_count[1m]))
+histogram_quantile(0.95, sum(rate(tikv_pd_msg_send_duration_seconds_bucket[30s])) by (le))
+histogram_quantile(0.98, sum(rate(tikv_pd_msg_send_duration_seconds_bucket[60s])) by (type, le))
+rate(tikv_pd_msg_send_duration_seconds_sum[30s]) / rate(tikv_pd_msg_send_duration_seconds_count[30s])
+node_load1{job="tikv-node"}
+node_load1{job="tidb-node"}

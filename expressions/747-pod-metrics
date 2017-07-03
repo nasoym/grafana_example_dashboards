@@ -1,0 +1,18 @@
+kube_pod_container_status_restarts{pod=~"$Pod.*$"}
+sum (rate (container_network_receive_bytes_total{pod_name=~"^$Pod$"}[1m]))
+- sum (rate (container_network_transmit_bytes_total{pod_name=~"^$Pod$"}[1m]))
+sum (container_memory_working_set_bytes{pod_name=~"^$Pod$"}) / sum (machine_memory_bytes{kubernetes_io_hostname=~"^$Node$"}) * 100
+sum (rate (container_cpu_usage_seconds_total{pod_name=~"^$Pod$"}[1m])) / sum (machine_cpu_cores{kubernetes_io_hostname=~"^$Node$"}) * 100
+sum (container_memory_working_set_bytes{pod_name=~"^$Pod$"})
+sum (machine_memory_bytes{kubernetes_io_hostname=~"^$Node$"})
+sum (rate (container_cpu_usage_seconds_total{pod_name=~"^$Pod$"}[1m]))
+sum (rate (container_cpu_usage_seconds_total{kubernetes_io_hostname=~"^$Node$"}[1m]))
+sum (container_memory_working_set_bytes{pod_name=~"^$Pod$"})
+sum (rate (container_cpu_usage_seconds_total{image!="",name=~"^k8s_.*",pod_name=~"^$Pod$"}[1m])) by (io_kubernetes_pod_name)
+sum (rate (container_cpu_usage_seconds_total{id!="/",pod_name=~"^$Pod$"}[1m])) by (id)
+sum (container_memory_working_set_bytes{image!="",name=~"^k8s_.*",pod_name=~"^$Pod$"}) by (io_kubernetes_pod_name)
+sum (container_memory_working_set_bytes{id!="/",pod_name=~"^$Pod$"}) by (id)
+sum (rate (container_network_receive_bytes_total{image!="",name=~"^k8s_.*",pod_name=~"^$Pod$"}[1m])) by (io_kubernetes_pod_name)
+- sum (rate (container_network_transmit_bytes_total{image!="",name=~"^k8s_.*",pod_name=~"^$Pod$"}[1m])) by (io_kubernetes_pod_name)
+sum (rate (container_network_receive_bytes_total{id!="/",pod_name=~"^$Pod$"}[1m])) by (id)
+- sum (rate (container_network_transmit_bytes_total{id!="/",pod_name=~"^$Pod$"}[1m])) by (id)

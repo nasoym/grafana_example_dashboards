@@ -1,0 +1,14 @@
+jmeter_running_threads
+sum((rate(jmeter_samples_latency_count{success="true"}[$interval])))
+sum(jmeter_samples_latency_count{success="true"})
+sum((rate(jmeter_samples_latency_count{success="false"}[$interval])))/sum((rate(jmeter_samples_latency_count[$interval]))) 
+rate (jmeter_samples_latency_sum{success="true",sampler_name=~"$sampler"}[$interval]) / rate(jmeter_samples_latency_count{success="true"}[$interval])
+jmeter_samples_latency{success="true",sampler_name=~"$sampler",quantile="0.99"}
+sum(rate (jmeter_samples_latency_count{success="true",sampler_name=~"$sampler"} [$interval]))
+sum(rate (jmeter_samples_latency_count{success="false",sampler_name=~"$sampler"} [$interval]))
+sum by (code) (rate(jmeter_samples_latency_count{sampler_name=~"$sampler"}[$interval])) 
+sum(rate(jmeter_samples_latency_count{sampler_name=~"$sampler",success="true"}[$interval])) by (sampler_name)
+sum(rate(jmeter_samples_latency_count{success="true",sampler_name=~"$sampler"}[$interval]))/sum(rate(jmeter_samples_latency_count{sampler_name=~"$sampler"}[$interval]))
+sum(rate(jmeter_samples_latency_count{success="false",sampler_name=~"$sampler"}[$interval]))/sum(rate(jmeter_samples_latency_count{sampler_name=~"$sampler"}[$interval]))
+rate(jmeter_samples_latency_count{code=~"5.*|4.*",sampler_name=~"$sampler"}[$interval]) 
+rate(jmeter_assertions_total_count{failure="true",sampler_name=~"$sampler"}[$interval])

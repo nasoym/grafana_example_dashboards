@@ -1,0 +1,14 @@
+sum({__name__=~".*_hystrix_command_is_circuit_breaker_open",command_group=~"$commandGroup",command_name=~"$commandName"})== bool 0 and sum({__name__=~".*_hystrix_command_rolling_count_exceptions_thrown",command_group=~"$commandGroup",command_name=~"$commandName"}) == bool 0
+sum({__name__=~".*_hystrix_command_error_percentage",command_group=~"$commandGroup",command_name=~"$commandName",job=~"$service"})
+{__name__=~".*_hystrix_command_latency_total_mean",command_group=~"$commandGroup",command_name=~"$commandName",job=~"$service"}
+{__name__=~".*_hystrix_command_latency_total_percentile_90",command_group=~"$commandGroup",command_name=~"$commandName",job=~"$service"}
+{__name__=~".*_hystrix_command_latency_total_percentile_99",command_group=~"$commandGroup",command_name=~"$commandName",job=~"$service"}
+{__name__=~".*_hystrix_command_latency_total_percentile_995",command_group=~"$commandGroup",command_name=~"$commandName",job=~"$service"}
+{__name__=~".*_hystrix_command_is_circuit_breaker_open",command_group=~"$commandGroup",command_name=~"$commandName",job=~"$service"}
+{__name__=~".*_hystrix_command_count_failure",command_group=~"$commandGroup",command_name=~"$commandName",job=~"$service"}
+{__name__=~".*_hystrix_command_count_success",command_group=~"$commandGroup",command_name=~"$commandName",job=~"$service"}
+{__name__=~".*_hystrix_command_count_timeout",command_group=~"$commandGroup",command_name=~"$commandName",job=~"$service"}
+{__name__=~".*_hystrix_thread_pool_queue_size", pool_name=~"$commandGroup"}
+{__name__=~".*_hystrix_thread_pool_thread_active_count", pool_name=~"$commandGroup"}
+{__name__=~".*_hystrix_thread_pool_completed_task_count", pool_name=~"$commandGroup"}
+{__name__=~".*_hystrix_command_count_thread_pool_rejected",command_group=~"$commandGroup",command_name=~"$commandName",job=~"$service"}

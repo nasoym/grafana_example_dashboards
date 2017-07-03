@@ -1,0 +1,5 @@
+sum(process_memory_bytes{name=~"$process"}) by (pid, name)
+process_age_seconds{name=~"$process"}
+sum(sidekiq_queue_size) by (name)
+sidekiq_queue_latency
+sum(process_count) by (name)

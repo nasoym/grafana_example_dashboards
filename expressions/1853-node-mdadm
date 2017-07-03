@@ -1,0 +1,6 @@
+sum(node_md_is_active{instance=~"$node"}) / count(node_md_is_active{instance=~"$node"})
+sum(node_md_disks{instance=~"$node"}) / count(node_md_disks{instance=~"$node"})
+sum(node_md_disks_active{instance=~"$node"}) / count(node_md_disks_active{instance=~"$node"})
+(sum(node_md_blocks_synced{instance=~"$node"}) / count(node_md_blocks_synced{instance=~"$node"})) / (sum(node_md_blocks{instance=~"$node"}) / count(node_md_blocks{instance=~"$node"}))
+sum(node_md_blocks{instance=~"$node"}) / count(node_md_blocks{instance=~"$node"})
+sum(node_md_blocks_synced{instance=~"$node"}) / count(node_md_blocks_synced{instance=~"$node"})

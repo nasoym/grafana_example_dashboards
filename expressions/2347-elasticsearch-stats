@@ -1,0 +1,25 @@
+max(elasticsearch_cluster_health_status{cluster="$cluster"})
+max(elasticsearch_cluster_health_number_of_nodes{cluster="$cluster"})
+max(elasticsearch_cluster_health_number_of_data_nodes{cluster="$cluster"})
+max(elasticsearch_cluster_health_number_of_pending_tasks{cluster="$cluster"})
+max(elasticsearch_cluster_health_active_primary_shards{cluster="$cluster", node_type=~"$node_type"})
+max(elasticsearch_cluster_health_active_shards{cluster="$cluster", node_type=~"$node_type"})
+max(elasticsearch_cluster_health_initializing_shards{cluster="$cluster", node_type=~"$node_type"})
+max(elasticsearch_cluster_health_relocating_shards{cluster="$cluster", node_type=~"$node_type"})
+max(elasticsearch_cluster_health_delayed_unassigned_shards{cluster="$cluster", node_type=~"$node_type"})
+elasticsearch_process_cpu_percent{cluster="$cluster",node=~"$node", node_type=~"$node_type"}
+1-(elasticsearch_filesystem_data_available_bytes{cluster="$cluster",node=~"$node", node_type=~"$node_type"}/elasticsearch_filesystem_data_size_bytes{cluster="$cluster",node=~"$node", node_type=~"$node_type"})
+elasticsearch_indices_docs{cluster="$cluster",node=~"$node", node_type=~"$node_type"}
+rate(elasticsearch_indices_indexing_index_total{cluster="$cluster",node=~"$node", node_type=~"$node_type"}[$interval])
+rate(elasticsearch_indices_indexing_delete_total{cluster="$cluster",node=~"$node", node_type=~"$node_type"}[$interval])
+rate(elasticsearch_indices_merges_total{cluster="$cluster",node=~"$node", node_type=~"$node_type"}[$interval])
+rate(elasticsearch_indices_search_query_time_seconds{cluster="$cluster",node=~"$node", node_type=~"$node_type"}[$interval])
+rate(elasticsearch_indices_indexing_index_time_seconds_total{cluster="$cluster",node=~"$node", node_type=~"$node_type"}[$interval])
+rate(elasticsearch_indices_merges_total_time_seconds_total{cluster="$cluster",node=~"$node", node_type=~"$node_type"}[$interval])
+elasticsearch_indices_fielddata_memory_size_bytes{cluster="$cluster",node=~"$node", node_type=~"$node_type"}
+rate(elasticsearch_indices_fielddata_evictions{cluster="$cluster",node=~"$node", node_type=~"$node_type"}[$interval])
+elasticsearch_indices_query_cache_memory_size_bytes{cluster="$cluster",node=~"$node", node_type=~"$node_type"}
+rate(elasticsearch_indices_query_cache_evictions{cluster="$cluster",node=~"$node", node_type=~"$node_type"}[$interval])
+elasticsearch_jvm_memory_used_bytes{area="heap", cluster="$cluster",node=~"$node", node_type=~"$node_type"}
+rate(elasticsearch_jvm_gc_collection_seconds_count{cluster="$cluster",node=~"$node", node_type=~"$node_type"}[$interval])
+rate(elasticsearch_jvm_gc_collection_seconds_count{cluster="$cluster",node=~"$node", node_type=~"$node_type"}[$interval])

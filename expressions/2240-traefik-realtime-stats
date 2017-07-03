@@ -1,0 +1,7 @@
+time() - process_start_time_seconds{job="load-balancer"}
+sum(traefik_requests_total{service="http"})
+sum(traefik_requests_total{service="https"})
+sum(traefik_request_duration_seconds_sum) / sum(traefik_requests_total) * 1000
+sum(rate(traefik_requests_total[5m]))
+rate(traefik_requests_total{service=~"http|https",code="200"}[5m])
+rate(traefik_requests_total{service=~"http|https",code!="200"}[5m])

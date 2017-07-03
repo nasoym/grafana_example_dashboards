@@ -1,0 +1,13 @@
+kafka_controller_kafkacontroller_activecontrollercount{instance=~"$Broker$"}
+sum(kafka_cluster_partition_underreplicated{instance=~"$Broker$", topic=~"$Topics$"})
+kafka_controller_kafkacontroller_offlinepartitionscount{instance=~"$Broker$"}
+sum(rate(kafka_server_replicamanager_isrshrinks_total{instance=~"$Broker$"}[5m]))
+sum(rate(kafka_server_replicamanager_isrexpands_total{instance=~"$Broker$"}[5m]))
+kafka_server_delayedoperationpurgatory_purgatorysize_delayedoperation_fetch{instance=~"$Broker$"}
+sum(kafka_server_brokertopicmetrics_bytesin_total{instance=~"$Broker$", topic=~"$Topics$"})
+sum(kafka_server_brokertopicmetrics_bytesout_total{instance=~"$Broker$", topic=~"$Topics$"})
+sum (rate (kafka_controller_controllerstats_uncleanleaderelectionspersec{instance=~"$Broker$"}[1m]))
+kafka_server_delayedoperationpurgatory_numdelayedoperations_delayedoperation_fetch{instance=~"$Broker.*$"}
+sum(rate(kafka_network_requestmetrics_localtimems_request_fetchconsumer_count{instance=~"$Broker$"}[1m]))
+sum(rate(kafka_network_requestmetrics_remotetimems_request_fetchconsumer_count{instance=~"$Broker$"}[1m]))
+sum(rate(kafka_network_requestmetrics_requestqueuetimems_request_fetchconsumer_count{instance=~"$Broker$"}[1m]))

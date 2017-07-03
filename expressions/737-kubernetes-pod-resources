@@ -1,0 +1,16 @@
+sum (container_memory_working_set_bytes{id="/",instance=~"^$instance$"}) / sum (machine_memory_bytes{instance=~"^$instance$"}) * 100
+sum(rate(container_cpu_usage_seconds_total{id="/",instance=~"^$instance$"}[1m])) / sum (machine_cpu_cores{instance=~"^$instance$"}) * 100
+sum(container_fs_usage_bytes{id="/",instance=~"^$instance$"}) / sum(container_fs_limit_bytes{id="/",instance=~"^$instance$"}) * 100
+sum(container_memory_working_set_bytes{id="/",instance=~"^$instance$"})
+sum (machine_memory_bytes{instance=~"^$instance$"})
+sum (rate (container_cpu_usage_seconds_total{id="/",instance=~"^$instance$"}[1m]))
+sum (machine_cpu_cores{instance=~"^$instance$"})
+sum(container_fs_usage_bytes{id="/",instance=~"^$instance$"})
+sum (container_fs_limit_bytes{id="/",instance=~"^$instance$"})
+sum(rate(container_network_receive_bytes_total{instance=~"^$instance$",namespace=~"^$namespace$"}[1m]))
+- sum(rate(container_network_transmit_bytes_total{instance=~"^$instance$",namespace=~"^$namespace$"}[1m]))
+sum(rate(container_cpu_usage_seconds_total{image!="",name=~"^k8s_.*",instance=~"^$instance$",namespace=~"^$namespace$"}[1m])) by (pod_name)
+sum (container_memory_working_set_bytes{image!="",name=~"^k8s_.*",instance=~"^$instance$",namespace=~"^$namespace$"}) by (pod_name)
+sum (rate (container_network_receive_bytes_total{image!="",name=~"^k8s_.*",instance=~"^$instance$",namespace=~"^$namespace$"}[1m])) by (pod_name)
+- sum (rate (container_network_transmit_bytes_total{image!="",name=~"^k8s_.*",instance=~"^$instance$",namespace=~"^$namespace$"}[1m])) by (pod_name)
+sum(container_fs_usage_bytes{image!="",name=~"^k8s_.*",instance=~"^$instance$",namespace=~"^$namespace$"}) by (pod_name)

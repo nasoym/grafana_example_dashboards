@@ -1,0 +1,2 @@
+$metric
+rate($metric[5m]) 

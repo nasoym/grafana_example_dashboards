@@ -1,0 +1,29 @@
+mattermost_login_logins_total{job=~"$server"}/(mattermost_login_logins_total{job=~"$server"}+mattermost_login_logins_fail_total{job=~"$server"})
+sum(mattermost_login_logins_total{job=~"$server"})/(sum(mattermost_login_logins_total{job=~"$server"})+sum(mattermost_login_logins_fail_total{job=~"$server"}))
+irate(mattermost_login_logins_total{job=~"$server"}[1m])*10
+sum(irate(mattermost_login_logins_total{job=~"$server"}[1m])*10)
+irate(mattermost_post_emails_sent_total{job=~"$server"}[1m])*10
+sum(irate(mattermost_post_emails_sent_total{job=~"$server"}[1m])*10)
+irate(mattermost_post_pushes_sent_total{job=~"$server"}[1m])*10
+sum(irate(mattermost_post_pushes_sent_total{job=~"$server"}[1m])*10)
+irate(mattermost_post_file_attachments_total{job=~"$server"}[1m])*10
+sum(irate(mattermost_post_file_attachments_total{job=~"$server"}[1m])*10)
+irate(mattermost_websocket_event_total{job=~"$server"}[1m])*10
+irate(mattermost_websocket_broadcasts_total{job=~"$server"}[1m])*10
+irate(mattermost_http_requests_total{job=~"$server"}[1m])*10
+sum(irate(mattermost_http_requests_total{job=~"$server"}[1m])*10)
+irate(mattermost_cluster_cluster_requests_total{job=~"$server"}[1m])*10
+sum(irate(mattermost_cluster_cluster_requests_total{job=~"$server"}[1m])*10)
+go_gc_duration_seconds{job=~"$server"}
+go_memstats_heap_objects{job=~"$server"}
+sum(go_memstats_heap_objects{job=~"$server"})
+mattermost_cache_etag_hit_total{job=~"$server"}/(mattermost_cache_etag_miss_total{job=~"$server"} + mattermost_cache_etag_hit_total{job=~"$server"})
+mattermost_cache_mem_hit_total{job=~"$server"}/(mattermost_cache_mem_miss_total{job=~"$server"} + mattermost_cache_mem_hit_total{job=~"$server"})
+mattermost_cache_etag_hit_total{job=~"$server"}/(mattermost_cache_etag_miss_total{job=~"$server"} + mattermost_cache_etag_hit_total{job=~"$server"})
+mattermost_cache_mem_hit_total{job=~"$server"}/(mattermost_cache_mem_miss_total{job=~"$server"} + mattermost_cache_mem_hit_total{job=~"$server"})
+mattermost_process_resident_memory_bytes{job=~"$server"}/1024/1024
+sum(mattermost_process_resident_memory_bytes{job=~"$server"}/1024/1024)
+mattermost_process_virtual_memory_bytes{job=~"$server"}/1024/1024
+sum(mattermost_process_virtual_memory_bytes{job=~"$server"}/1024/1024)
+mattermost_process_open_fds{job=~"$server"}
+sum(mattermost_process_open_fds{job=~"$server"})

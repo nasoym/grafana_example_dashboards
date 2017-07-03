@@ -1,0 +1,49 @@
+sum(rate(container_network_receive_bytes_total{id="/"}[$interval])) by (id)
+- sum(rate(container_network_transmit_bytes_total{id="/"}[$interval])) by (id)
+count(rate(container_last_seen{name=~".+",container_group="monitoring"}[$interval]))
+count(rate(container_last_seen{name=~".+",container_group="ops-infrastructure"}[$interval]))
+count(rate(container_last_seen{name=~".+",container_group="backend-infrastructure"}[$interval]))
+count(rate(container_last_seen{name=~".+",container_group="backend-workers"}[$interval]))
+sum(rate(container_cpu_system_seconds_total[1m]))
+sum(rate(container_cpu_system_seconds_total{name=~".+"}[1m]))
+sum(rate(container_cpu_system_seconds_total{id="/"}[1m]))
+sum(rate(process_cpu_seconds_total[$interval])) * 100
+sum(rate(container_cpu_system_seconds_total{name=~".+"}[1m])) + sum(rate(container_cpu_system_seconds_total{id="/"}[1m])) + sum(rate(process_cpu_seconds_total[1m]))
+node_filesystem_free{fstype="aufs"}
+node_filesystem_size{fstype="aufs"} - node_filesystem_free{fstype="aufs"}
+container_memory_rss{name=~".+"}
+sum(container_memory_rss{name=~".+"})
+container_memory_usage_bytes{name=~".+"}
+container_memory_rss{id="/"}
+sum(container_memory_rss)
+node_memory_Buffers
+node_memory_MemFree
+node_memory_MemAvailable
+node_memory_MemTotal - node_memory_MemAvailable
+node_memory_Inactive
+node_memory_KernelStack
+node_memory_Active
+node_memory_MemTotal - (node_memory_Active + node_memory_MemFree + node_memory_Inactive)
+node_memory_MemFree + node_memory_Inactive 
+container_memory_rss{name=~".+"}
+node_memory_Inactive + node_memory_MemFree + node_memory_MemAvailable
+sum(rate(node_disk_bytes_read[$interval])) by (device)
+sum(rate(node_disk_bytes_written[$interval])) by (device)
+
+sum(rate(container_cpu_usage_seconds_total{name=~".+"}[$interval])) by (name) * 100
+{__name__=~"^node_load.*"}
+sum(rate(container_network_transmit_bytes_total{name=~".+"}[$interval])) by (name)
+rate(container_network_transmit_bytes_total{id="/"}[$interval])
+sum(container_memory_rss{name=~".+"}) by (name)
+container_memory_usage_bytes{name=~".+"}
+sum(rate(container_network_receive_bytes_total{name=~".+"}[$interval])) by (name)
+- rate(container_network_transmit_bytes_total{name=~".+"}[$interval])
+container_memory_rss{name=~".+"}
+container_memory_usage_bytes{name=~".+"}
+sum(container_memory_cache{name=~".+"}) by (name)
+cadvisor_version_info
+prometheus_build_info
+node_exporter_build_info
+cadvisor_version_info
+cadvisor_version_info
+cadvisor_version_info

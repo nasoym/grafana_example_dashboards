@@ -1,0 +1,7 @@
+jvm_gc_collection_seconds_count{job="$job"}
+jvm_memory_bytes_max{job="$job"}
+jvm_memory_bytes_used{job="$job"}
+jvm_memory_bytes_committed{job="$job"}
+jvm_gc_collection_seconds_sum_per_process_cpu_seconds_total_percent{job="$job"}
+jvm_threads_current{job="$job"}
+jvm_threads_peak{job="$job"}

@@ -1,0 +1,29 @@
+system_load5{host=~"$node"} 
+system_load15{host=~"$node"} 
+system_load1{host=~"$node"} 
+processes_running{host=~"$node"} 
+processes_stopped{host=~"$node"} 
+processes_paging{host=~"$node"} 
+cpu_usage_steal{cpu="cpu-total", host=~"$node"}
+cpu_usage_iowait{cpu="cpu-total", host=~"$node"}
+cpu_usage_user{cpu="cpu-total", host=~"$node"}
+cpu_usage_system{cpu="cpu-total", host=~"$node"}
+cpu_usage_softirq{cpu="cpu-total", host=~"$node"}
+cpu_usage_irq{cpu="cpu-total", host=~"$node"}
+cpu_usage_nice{cpu="cpu-total", host=~"$node"}
+cpu_usage_idle{cpu="cpu-total", host=~"$node"}
+mem_cached{host=~"$node"}
+mem_buffered{host=~"$node"}
+mem_free{host=~"$node"}
+mem_used{host=~"$node"}
+rate(diskio_reads{name=~"$disk", host=~"$node"}[5m])
+rate(diskio_writes{name=~"$disk", host=~"$node"}[5m])
+rate(diskio_read_bytes{name=~"$disk", host=~"$node"}[5m])
+rate(diskio_write_bytes{name=~"$disk", host=~"$node"}[5m])
+rate(kernel_vmstat_numa_hit{host=~"$node"}[5m])
+rate(kernel_vmstat_numa_miss{host=~"$node"}[5m])
+rate(kernel_vmstat_numa_foreign{host=~"$node"}[5m])
+rate(kernel_vmstat_numa_local{host=~"$node"}[5m])
+rate(kernel_vmstat_numa_other{host=~"$node"}[5m])
+rate(net_bytes_sent{interface=~"$interface", host=~"$node"}[5m])*8
+rate(net_bytes_recv{interface=~"$interface", host=~"$node"}[5m])*8

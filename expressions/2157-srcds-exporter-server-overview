@@ -1,0 +1,9 @@
+sum(gameserver_player_count_current{server=~"^$server$"})
+sum(gameserver_player_count_max{server=~"^$server$"})
+gameserver_player_count_max{server=~"^$server$"}
+gameserver_player_count_current{server=~"^$server$"}
+gameserver_player_count_current{server=~"^$server$"} + irate(gameserver_player_count_current{server=~"^$server$"}[5m])
+gameserver_map_current{server=~"^$server$"}
+avg(gameserver_players_ping_current{server=~"^$server$"})
+avg(gameserver_players_loss_current{server=~"^$server$"})
+sum(gameserver_players_playing_current{server=~"^$server$"} == 1) by (steamid)

@@ -1,0 +1,16 @@
+node_load1{job="node", instance=~"$node:.*"} / count by(job, instance)(count by(job, instance, cpu)(node_cpu{job="node", instance=~"$node:.*"}))
+up{job="node", instance=~"$node:.*"}
+count(count by(cpu)(node_cpu{job="node", instance=~"$node:.*"}))
+node_memory_MemTotal{job="node", instance=~"$node:.*"}
+sum(node_filesystem_size{job="node", instance=~"$node:.*", device=~"/dev/.*", mountpoint!="/var/lib/docker/aufs"})
+time() - node_boot_time{job="node", instance=~"$node:.*"}
+sum by(mode)(irate(node_cpu{job="node", instance=~"$node:.*", mode!="idle"}[5m])) > 0
+irate(node_disk_io_time_ms{job="node", instance=~"$node:.*"}[5m]) / 1000
+node_memory_Buffers{job="node", instance=~"$node:.*"}
+node_memory_Cached{job="node", instance=~"$node:.*"}
+node_memory_MemFree{job="node", instance=~"$node:.*"}
+node_memory_MemTotal{job="node", instance=~"$node:.*"} - node_memory_MemFree{job="node", instance=~"$node:.*"} - node_memory_Cached{job="node", instance=~"$node:.*"} - node_memory_Buffers{job="node", instance=~"$node:.*"}
+irate(node_network_transmit_bytes{job="node", instance=~"$node:.*", device!~"lo|bond[0-9]|cbr[0-9]|veth.*"}[5m]) > 0
+irate(node_network_receive_bytes{job="node", instance=~"$node:.*", device!~"lo|bond[0-9]|cbr[0-9]|veth.*"}[5m]) > 0
+node_filesystem_size{job="node", instance=~"$node:.*", device=~"/dev/.*", mountpoint="$filesystem_mountpoint"} - node_filesystem_free{job="node", instance=~"$node:.*", device=~"/dev/.*", mountpoint="$filesystem_mountpoint"}
+node_filesystem_free{job="node", instance=~"$node:.*", device=~"/dev/.*", mountpoint="$filesystem_mountpoint"}

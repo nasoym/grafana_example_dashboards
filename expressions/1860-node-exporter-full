@@ -1,0 +1,330 @@
+(((count(count(node_cpu{instance=~"$node:.*"}) by (cpu))) - avg(sum by (mode)(irate(node_cpu{mode='idle',instance=~"$node:.*"}[5m])))) * 100) / count(count(node_cpu{instance=~"$node:.*"}) by (cpu))
+((node_memory_MemTotal{instance=~"$node:.*"} - node_memory_MemFree{instance=~"$node:.*"} - node_memory_Cached{instance=~"$node:.*"}) / (node_memory_MemTotal{instance=~"$node:.*"} )) * 100
+((node_memory_SwapTotal{instance=~"$node:.*"} - node_memory_SwapFree{instance=~"$node:.*"}) / (node_memory_SwapTotal{instance=~"$node:.*"} )) * 100
+avg(node_load1{instance=~"$node:.*"}) /  count(count(node_cpu{instance=~"$node:.*"}) by (cpu)) * 100
+irate(node_network_receive_bytes{instance=~"$node:.*"}[5m])
+irate(node_network_transmit_bytes{instance=~"$node:.*"}[5m])
+count(count(node_cpu{instance=~"$node:.*"}) by (cpu))
+node_memory_MemTotal{instance=~"$node:.*"}
+node_memory_SwapTotal{instance=~"$node:.*"}
+node_load1{instance=~"$node:.*"}
+node_time{instance=~"$node:.*"} - node_boot_time{instance=~"$node:.*"}
+((node_filesystem_size{device=~"rootfs",instance=~"$node:.*"} - node_filesystem_free{device=~"rootfs",instance=~"$node:.*"}) * 100 ) / (node_filesystem_size{device=~"rootfs",instance=~"$node:.*"})
+sum ( irate(node_cpu{mode!='idle',instance=~"$node:.*"}[5m]))
+sum by (mode)(irate(node_cpu{mode='idle',instance=~"$node:.*"}[5m]))
+node_memory_MemTotal{instance=~"$node:.*"}
+node_memory_MemTotal{instance=~"$node:.*"} - node_memory_MemFree{instance=~"$node:.*"} - node_memory_Cached{instance=~"$node:.*"} - node_memory_Buffers{instance=~"$node:.*"} - node_memory_Slab{instance=~"$node:.*"}
+(node_memory_SwapTotal{instance=~"$node:.*"} - node_memory_SwapFree{instance=~"$node:.*"})
+100 - (node_filesystem_free{instance=~"$node:.*",fstype=~"xfs|ext4"} / node_filesystem_size{instance=~"$node:.*",fstype=~"xfs|ext4"} * 100)
+node_filesystem_size{instance=~"$node:.*",fstype=~"xfs|ext4"}
+sum by (mode)(irate(node_cpu{mode="system",instance=~"$node:.*"}[5m]))
+sum by (mode)(irate(node_cpu{mode='user',instance=~"$node:.*"}[5m]))
+sum by (mode)(irate(node_cpu{mode='nice',instance=~"$node:.*"}[5m]))
+sum by (mode)(irate(node_cpu{mode='idle',instance=~"$node:.*"}[5m]))
+sum by (mode)(irate(node_cpu{mode='iowait',instance=~"$node:.*"}[5m]))
+sum by (mode)(irate(node_cpu{mode='irq',instance=~"$node:.*"}[5m]))
+sum by (mode)(irate(node_cpu{mode='softirq',instance=~"$node:.*"}[5m]))
+sum by (mode)(irate(node_cpu{mode='steal',instance=~"$node:.*"}[5m]))
+sum by (mode)(irate(node_cpu{mode='guest',instance=~"$node:.*"}[5m]))
+node_memory_MemTotal{instance=~"$node:.*"} - node_memory_MemFree{instance=~"$node:.*"} - node_memory_Buffers{instance=~"$node:.*"} - node_memory_Cached{instance=~"$node:.*"} - node_memory_Slab{instance=~"$node:.*"} - node_memory_PageTables{instance=~"$node:.*"} - node_memory_SwapCached{instance=~"$node:.*"}
+node_memory_PageTables{instance=~"$node:.*"}
+node_memory_SwapCached{instance=~"$node:.*"}
+node_memory_Slab{instance=~"$node:.*"}
+node_memory_Cached{instance=~"$node:.*"}
+node_memory_Buffers{instance=~"$node:.*"}
+node_memory_MemFree{instance=~"$node:.*"}
+(node_memory_SwapTotal{instance=~"$node:.*"} - node_memory_SwapFree{instance=~"$node:.*"})
+node_memory_Committed_AS{instance=~"$node:.*"}
+node_memory_Mapped{instance=~"$node:.*"}
+node_memory_Active{instance=~"$node:.*"}
+node_memory_Inactive{instance=~"$node:.*"}
+node_memory_VmallocUsed{instance=~"$node:.*"}
+node_memory_CommitLimit{instance=~"$node:.*"}
+node_memory_Dirty{instance=~"$node:.*"}
+node_memory_HardwareCorrupted{instance=~"$node:.*"}
+node_memory_Unevictable{instance=~"$node:.*"}
+irate(node_network_receive_bytes{instance=~"$node:.*"}[5m])
+irate(node_network_transmit_bytes{instance=~"$node:.*"}[5m])
+irate(node_disk_bytes_read{instance=~"$node:.*",device=~"[a-z]*[a-z]"}[5m])
+irate(node_disk_bytes_written{instance=~"$node:.*",device=~"[a-z]*[a-z]"}[5m])
+irate(node_disk_io_time_ms{instance=~"$node:.*",device=~"[a-z]*[a-z]"} [5m])
+100- ((node_filesystem_avail{instance=~"$node:.*",device!~'rootfs'} * 100) / node_filesystem_size{instance=~"$node:.*",device!~'rootfs'})
+node_memory_Committed_AS{instance=~"$node:.*"}
+node_memory_Mapped{instance=~"$node:.*"}
+node_memory_Active{instance=~"$node:.*"}
+node_memory_Inactive{instance=~"$node:.*"}
+node_memory_VmallocUsed{instance=~"$node:.*"}
+node_memory_CommitLimit{instance=~"$node:.*"}
+node_memory_Dirty{instance=~"$node:.*"}
+node_memory_HardwareCorrupted{instance=~"$node:.*"}
+node_memory_Unevictable{instance=~"$node:.*"}
+node_memory_Shmem{instance=~"$node:.*"}
+node_memory_Mlocked{instance=~"$node:.*"}
+irate(node_vmstat_pswpin {instance=~"$node:.*"}[5m])
+irate(node_vmstat_pswpout{instance=~"$node:.*"}[5m])
+node_memory_MemTotal{instance=~"$node:.*"}
+node_memory_MemTotal{instance=~"$node:.*"} + (node_memory_SwapTotal{instance=~"$node:.*"})
+node_memory_Writeback{instance=~"$node:.*"}
+node_memory_WritebackTmp{instance=~"$node:.*"}
+node_memory_MemTotal{instance=~"$node:.*"}
+node_memory_MemTotal{instance=~"$node:.*"} + (node_memory_SwapTotal{instance=~"$node:.*"})
+node_memory_Active_file{instance=~"$node:.*"}
+node_memory_Inactive_file{instance=~"$node:.*"}
+node_memory_VmallocChunk{instance=~"$node:.*"}
+node_memory_VmallocTotal{instance=~"$node:.*"}
+node_memory_VmallocUsed{instance=~"$node:.*"}
+node_memory_HugePages_Free{instance=~"$node:.*"}
+node_memory_HugePages_Rsvd{instance=~"$node:.*"}
+node_memory_HugePages_Surp{instance=~"$node:.*"}
+node_memory_HugePages_Total{instance=~"$node:.*"}
+node_memory_Hugepagesize{instance=~"$node:.*"}
+node_memory_MemTotal{instance=~"$node:.*"}
+node_memory_MemTotal{instance=~"$node:.*"} + (node_memory_SwapTotal{instance=~"$node:.*"})
+node_memory_DirectMap1G{instance=~"$node:.*"}
+node_memory_DirectMap2M{instance=~"$node:.*"}
+node_memory_DirectMap4k{instance=~"$node:.*"}
+node_memory_MemTotal{instance=~"$node:.*"}
+node_memory_MemTotal{instance=~"$node:.*"} + (node_memory_SwapTotal{instance=~"$node:.*"})
+node_memory_AnonHugePages{instance=~"$node:.*"}
+node_memory_AnonPages{instance=~"$node:.*"}
+node_memory_Active_anon{instance=~"$node:.*"}
+node_memory_MemTotal{instance=~"$node:.*"}
+node_memory_MemTotal{instance=~"$node:.*"} + (node_memory_SwapTotal{instance=~"$node:.*"})
+node_memory_SReclaimable{instance=~"$node:.*"}
+node_memory_SUnreclaim{instance=~"$node:.*"}
+node_memory_MemTotal{instance=~"$node:.*"}
+node_memory_MemTotal{instance=~"$node:.*"} + (node_memory_SwapTotal{instance=~"$node:.*"})
+node_memory_NFS_Unstable{instance=~"$node:.*"}
+irate(node_context_switches{instance=~"$node:.*"}[5m])
+irate(node_intr{instance=~"$node:.*"}[5m])
+node_entropy_available_bits{instance=~"$node:.*"}
+node_load1{instance=~"$node:.*"}
+node_load5{instance=~"$node:.*"}
+node_load15{instance=~"$node:.*"}
+node_procs_blocked{instance=~"$node:.*"}
+node_procs_running{instance=~"$node:.*"}
+increase(node_forks{instance=~"$node:.*"}[5m])
+process_max_fds{instance=~"$node:.*"}
+process_open_fds{instance=~"$node:.*"}
+process_resident_memory_bytes{instance=~"$node:.*"}
+process_start_time_seconds{instance=~"$node:.*"}
+process_virtual_memory_bytes{instance=~"$node:.*"}
+irate(node_disk_bytes_read{instance=~"$node:.*"}[5m])
+irate(node_disk_bytes_written{instance=~"$node:.*"}[5m])
+irate(node_disk_reads_completed{instance=~"$node:.*"}[5m])
+irate(node_disk_writes_completed{instance=~"$node:.*"}[5m])
+irate(node_disk_read_time_ms{instance=~"$node:.*"}[5m])
+irate(node_disk_write_time_ms{instance=~"$node:.*"}[5m])
+irate(node_disk_io_time_weighted{instance=~"$node:.*"}[5m])
+irate(node_disk_reads_merged{instance=~"$node:.*"}[5m])
+irate(node_disk_writes_mergedd{instance=~"$node:.*"}[5m])
+irate(node_disk_io_now{instance=~"$node:.*"}[5m])
+irate(node_disk_reads_completed{instance=~"$node:.*"}[5m])
+irate(node_disk_writes_completed{instance=~"$node:.*"}[5m])
+irate(node_disk_io_time_ms{instance=~"$node:.*"}[5m])
+irate(node_disk_sectors_read{instance=~"$node.*"}[5m])
+irate(node_disk_sectors_written{instance=~"$node.*"}[5m])
+node_textfile_scrape_error{instance=~"$node:.*"}
+node_filesystem_avail{instance=~"$node:.*",device!~'rootfs'}
+node_filesystem_free{instance=~"$node:.*",device!~'rootfs'}
+node_filesystem_size{instance=~"$node:.*",device!~'rootfs'}
+node_filesystem_files{instance=~"$node:.*"}
+node_filefd_maximum{instance=~"$node:.*"}
+node_filefd_allocated{instance=~"$node:.*"}
+node_filesystem_readonly{instance=~"$node:.*",device!~'rootfs'}
+irate(node_network_receive_packets{instance=~"$node.*"}[5m])
+irate(node_network_transmit_packets{instance=~"$node.*"}[5m])
+irate(node_network_receive_compressed{instance=~"$node.*"}[5m])
+irate(node_network_transmit_compressed{instance=~"$node.*"}[5m])
+irate(node_network_receive_errs{instance=~"$node.*"}[5m])
+irate(node_network_transmit_errs{instance=~"$node.*"}[5m])
+irate(node_network_receive_drop{instance=~"$node.*"}[5m])
+irate(node_network_transmit_drop{instance=~"$node.*"}[5m])
+irate(node_network_receive_fifo{instance=~"$node.*"}[5m])
+irate(node_network_transmit_fifo{instance=~"$node.*"}[5m])
+irate(node_network_receive_frame{instance=~"$node.*"}[5m])
+irate(node_network_transmit_frame{instance=~"$node.*"}[5m])
+irate(node_network_receive_multicast{instance=~"$node.*"}[5m])
+irate(node_network_transmit_multicast{instance=~"$node.*"}[5m])
+node_nf_conntrack_entries{instance=~"$node.*"}
+node_nf_conntrack_entries_limit{instance=~"$node.*"}
+node_sockstat_TCP_alloc{instance=~"$node.*"}
+node_sockstat_TCP_inuse{instance=~"$node.*"}
+node_sockstat_TCP_mem{instance=~"$node.*"}
+node_sockstat_TCP_mem_bytes{instance=~"$node.*"}
+node_sockstat_TCP_orphan{instance=~"$node.*"}
+node_sockstat_TCP_tw{instance=~"$node.*"}
+node_sockstat_UDPLITE_inuse{instance=~"$node.*"}
+node_sockstat_UDP_inuse{instance=~"$node.*"}
+node_sockstat_UDP_mem{instance=~"$node.*"}
+node_sockstat_UDP_mem_bytes{instance=~"$node.*"}
+node_sockstat_sockets_used{instance=~"$node.*"}
+node_sockstat_FRAG_inuse{instance=~"$node.*"}
+node_sockstat_FRAG_memory{instance=~"$node.*"}
+node_sockstat_RAW_inuse{instance=~"$node.*"}
+irate(node_netstat_Ip_InDiscards{instance=~"$node..*"}[5m])
+irate(node_netstat_Ip_InHdrErrors{instance=~"$node..*"}[5m])
+irate(node_netstat_Ip_InUnknownProtos{instance=~"$node..*"}[5m])
+irate(node_netstat_Ip_OutDiscards{instance=~"$node..*"}[5m])
+irate(node_netstat_Ip_OutNoRoutes{instance=~"$node..*"}[5m])
+irate(node_netstat_IpExt_InNoRoutes{instance=~"$node..*"}[5m])
+irate(node_netstat_IpExt_InCsumErrors{instance=~"$node..*"}[5m])
+irate(node_netstat_IpExt_InTruncatedPkts{instance=~"$node..*"}[5m])
+irate(node_netstat_Ip_InReceives{instance=~"$node..*"}[5m])
+irate(node_netstat_Ip_DefaultTTL{instance=~"$node..*"}[5m])
+irate(node_netstat_Ip_InDelivers{instance=~"$node..*"}[5m])
+irate(node_netstat_Ip_OutRequests{instance=~"$node..*"}[5m])
+irate(node_netstat_IpExt_InBcastOctets{instance=~"$node..*"}[5m])
+irate(node_netstat_IpExt_InBcastPkts{instance=~"$node..*"}[5m])
+irate(node_netstat_IpExt_OutBcastOctets{instance=~"$node..*"}[5m])
+irate(node_netstat_IpExt_OutBcastPkts{instance=~"$node..*"}[5m])
+irate(node_netstat_IpExt_InMcastOctets{instance=~"$node..*"}[5m])
+irate(node_netstat_IpExt_InMcastPkts{instance=~"$node..*"}[5m])
+irate(node_netstat_IpExt_OutMcastOctets{instance=~"$node..*"}[5m])
+irate(node_netstat_IpExt_OutMcastPkts{instance=~"$node..*"}[5m])
+irate(node_netstat_IpExt_InCEPkts{instance=~"$node..*"}[5m])
+irate(node_netstat_IpExt_InECT0Pkts{instance=~"$node..*"}[5m])
+irate(node_netstat_IpExt_InECT1Pkts{instance=~"$node..*"}[5m])
+irate(node_netstat_IpExt_InOctets{instance=~"$node..*"}[5m])
+irate(node_netstat_IpExt_OutOctets{instance=~"$node..*"}[5m])
+irate(node_netstat_IpExt_InNoECTPkts{instance=~"$node..*"}[5m])
+irate(node_netstat_Ip_ForwDatagrams{instance=~"$node..*"}[5m])
+irate(node_netstat_Ip_Forwarding{instance=~"$node..*"}[5m])
+irate(node_netstat_Ip_ReasmFails{instance=~"$node..*"}[5m])
+irate(node_netstat_Ip_ReasmOKs{instance=~"$node..*"}[5m])
+irate(node_netstat_Ip_ReasmReqds{instance=~"$node..*"}[5m])
+irate(node_netstat_Ip_ReasmTimeout{instance=~"$node..*"}[5m])
+irate(node_netstat_Ip_FragCreates{instance=~"$node..*"}[5m])
+irate(node_netstat_Ip_FragFails{instance=~"$node..*"}[5m])
+irate(node_netstat_Ip_FragOKs{instance=~"$node..*"}[5m])
+node_netstat_Tcp_CurrEstab{instance=~"$node.*"}
+node_netstat_Tcp_MaxConn{instance=~"$node.*"}
+irate(node_netstat_Tcp_InCsumErrors{instance=~"$node.*"}[5m])
+irate(node_netstat_Tcp_InErrs{instance=~"$node.*"}[5m])
+irate(node_netstat_Tcp_InSegs{instance=~"$node.*"}[5m])
+irate(node_netstat_Tcp_OutRsts{instance=~"$node.*"}[5m])
+irate(node_netstat_Tcp_OutSegs{instance=~"$node.*"}[5m])
+irate(node_netstat_Tcp_RetransSegs{instance=~"$node.*"}[5m])
+irate(node_netstat_Tcp_ActiveOpens{instance=~"$node.*"}[5m])
+irate(node_netstat_Tcp_AttemptFails{instance=~"$node.*"}[5m])
+irate(node_netstat_Tcp_EstabResets{instance=~"$node.*"}[5m])
+irate(node_netstat_Tcp_PassiveOpens{instance=~"$node.*"}[5m])
+node_netstat_Tcp_RtoAlgorithm{instance=~"$node.*"}
+node_netstat_Tcp_RtoMax{instance=~"$node.*"}
+node_netstat_Tcp_RtoMin{instance=~"$node.*"}
+irate(node_netstat_TcpExt_TCPAbortOnClose{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPAbortOnData{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPAbortOnLinger{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPAbortOnMemory{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPAbortOnTimeout{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPAbortFailed{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPTimeouts{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_DelayedACKLocked{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_DelayedACKLost{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_DelayedACKs{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_SyncookiesFailed{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_SyncookiesRecv{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_SyncookiesSent{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPLossFailures{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPLossProbeRecovery{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_ListenDrops{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_LockDroppedIcmps{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPDeferAcceptDrop{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPBacklogDrop{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_OutOfWindowIcmps{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPForwardRetrans{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPSlowStartRetrans{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPSynRetrans{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPSpuriousRTOs{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPSpuriousRtxHostQueues{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPFullUndo{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_PruneCalled{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_RcvPruned{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_OfoPruned{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPDirectCopyFromBacklog{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPDirectCopyFromPrequeue{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TW{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TWKilled{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TWRecycled{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPTimeWaitOverflow{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_PAWSActive{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_PAWSEstab{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_PAWSPassive{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPDSACKIgnoredOld{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPDSACKOfoRecv{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPDSACKOfoSent{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPDSACKOldSent{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPDSACKRecv{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPDSACKUndo{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPDSACKIgnoredNoUndo{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPSackRecovery{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPSackRecoveryFail{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPSackShiftFallback{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPSackShifted{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPFastOpenActive{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPFastOpenActiveFail{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPFastOpenCookieReqd{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPFastOpenListenOverflow{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPFastOpenPassive{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPFastOpenPassiveFail{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPFastRetrans{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPHPAcks{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPHPHits{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPHPHitsToUser{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPToZeroWindowAdv{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPWantZeroWindowAdv{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPFromZeroWindowAdv{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPFACKReorder{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPTSReorder{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_ArpFilter{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_BusyPollRxPackets{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_EmbryonicRsts{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_IPReversePathFilter{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_ListenOverflows{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPSchedulerFailed{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPAutoCorking{instance=~"$node.*"}[5m])
+irate(node_netstat_TcpExt_TCPChallengeACK{instance=~"$node.*"}[5m])
+irate(node_netstat_Udp_InDatagrams{instance=~"$node.*"}[5m])
+irate(node_netstat_Udp_OutDatagrams{instance=~"$node.*"}[5m])
+irate(node_netstat_Udp_InCsumErrors{instance=~"$node.*"}[5m])
+irate(node_netstat_Udp_InErrors{instance=~"$node.*"}[5m])
+irate(node_netstat_Udp_RcvbufErrors{instance=~"$node.*"}[5m])
+irate(node_netstat_Udp_SndbufErrors{instance=~"$node.*"}[5m])
+irate(node_netstat_Udp_NoPorts{instance=~"$node.*"}[5m])
+irate(node_netstat_UdpLite_InDatagrams{instance=~"$node.*"}[5m])
+irate(node_netstat_UdpLite_OutDatagrams{instance=~"$node.*"}[5m])
+irate(node_netstat_UdpLite_InCsumErrors{instance=~"$node.*"}[5m])
+irate(node_netstat_UdpLite_InErrors{instance=~"$node.*"}[5m])
+irate(node_netstat_UdpLite_RcvbufErrors{instance=~"$node.*"}[5m])
+irate(node_netstat_UdpLite_SndbufErrors{instance=~"$node.*"}[5m])
+irate(node_netstat_UdpLite_NoPorts{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_InMsgs{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_InRedirects{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_OutMsgs{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_OutRedirects{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_InCsumErrors{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_InErrors{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_OutErrors{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_InDestUnreachs{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_OutDestUnreachs{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_InTimeExcds{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_OutTimeExcds{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_InParmProbs{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_OutParmProbs{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_InSrcQuenchs{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_OutSrcQuenchs{instance=~"$node.*"}[5m])
+irate(node_netstat_IcmpMsg_InType3{instance=~"$node.*"}[5m])
+irate(node_netstat_IcmpMsg_OutType3{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_InEchoReps{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_InEchos{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_OutEchoReps{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_OutEchos{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_InTimestampReps{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_InTimestamps{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_OutTimestampReps{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_OutTimestamps{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_InAddrMaskReps{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_InAddrMasks{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_OutAddrMaskReps{instance=~"$node.*"}[5m])
+irate(node_netstat_Icmp_OutAddrMasks{instance=~"$node.*"}[5m])
+irate(node_exporter_scrape_duration_seconds{instance=~"$node.*",result="success",quantile="0.99"}[5m])

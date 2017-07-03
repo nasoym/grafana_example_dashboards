@@ -1,0 +1,7 @@
+(time() - process_start_time_seconds{job="prometheus"})
+prometheus_local_storage_memory_series
+prometheus_local_storage_indexing_queue_length
+rate(prometheus_local_storage_ingested_samples_total[5m])
+rate(prometheus_target_interval_length_seconds_count[5m])
+prometheus_target_interval_length_seconds{quantile!="0.01", quantile!="0.05"}
+prometheus_evaluator_duration_milliseconds{quantile!="0.01", quantile!="0.05"}

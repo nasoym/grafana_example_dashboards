@@ -1,0 +1,33 @@
+count(count by(cpu)(node_cpu{instance=~"$server"}))
+sum(node_filesystem_size{instance=~"$server", device=~"/dev/.*"})
+node_memory_MemTotal{instance=~"$server"}
+node_load1{instance=~"$server"} / count by(job, instance)(count by(job, instance, cpu)(node_cpu{instance=~"$server"}))
+time() - node_boot_time{instance=~"$server"}
+sum(irate(node_exporter_scrape_duration_seconds_sum{instance=~"$server"}[5m]))
+node_memory_MemTotal{instance=~"$server"} - node_memory_MemFree{instance=~"$server"} - node_memory_Cached{instance=~"$server"} - node_memory_Buffers{instance=~"$server"} - node_memory_Slab{instance=~"$server"}
+node_memory_Buffers{instance=~"$server"}
+node_memory_Cached{instance=~"$server"} + node_memory_Slab{instance=~"$server"}
+node_memory_MemFree{instance=~"$server"}
+node_vmstat_pswpin{instance=~"$server"}
+node_vmstat_pswpout{instance=~"$server"}
+( (node_memory_MemFree{instance=~"$server"} + node_memory_Cached{instance=~"$server"} + node_memory_Slab{instance=~"$server"} + node_memory_Buffers{instance=~"$server"} ) / node_memory_MemTotal{instance=~"$server"}) * 100
+min(node_filesystem_free{fstype=~"xfs|ext4",instance=~"$server"} / node_filesystem_size{fstype=~"xfs|ext4",instance=~"$server"})
+100 - (avg(irate(node_cpu{mode="idle", instance=~"$server"}[5m])) * 100)
+100 - (avg by (cpu) (irate(node_cpu{mode="idle", instance=~"$server"}[5m])) * 100)
+node_load1{instance=~"$server"}
+node_load5{instance=~"$server"}
+node_load15{instance=~"$server"}
+irate(node_network_transmit_bytes{instance=~"$server", device!~"lo|bond[0-9]|cbr[0-9]|veth.*"}[5m]) > 0
+irate(node_network_receive_bytes{instance=~"$server", device!~"lo|bond[0-9]|cbr[0-9]|veth.*"}[5m]) > 0
+node_tcp_connection_states{instance=~"$server"}
+sum by (instance) (irate(node_disk_reads_completed{instance=~"$server"}[5m]))
+sum by (instance) (irate(node_disk_writes_completed{instance=~"$server"}[5m]))
+sum by (instance) (irate(node_disk_io_time_ms{instance=~"$server"}[5m]))
+sum by (instance) (irate(node_disk_reads_completed{instance=~"$server"}[5m])) + sum by (instance) (irate(node_disk_writes_completed{instance=~"$server"}[5m]))
+sum by (instance) (irate(node_disk_bytes_read{instance=~"$server"}[5m]))
+sum by (instance) (irate(node_disk_bytes_written{instance=~"$server"}[5m]))
+sum by (instance) (irate(node_disk_bytes_read{instance=~"$server"}[5m])) + sum by (instance) (irate(node_disk_bytes_written{instance=~"$server"}[5m]))
+rate(node_disk_io_time_ms{instance=~"$server"}[5m])
+topk(5, 100 - (node_filesystem_free{instance=~"$server",fstype=~"xfs|ext4"} / node_filesystem_size{instance=~"$server",fstype=~"xfs|ext4"} * 100))
+node_filesystem_size{instance=~"$server",fstype=~"xfs|ext4"}
+100 - (node_filesystem_free{instance=~"$server",fstype=~"xfs|ext4"} / node_filesystem_size{instance=~"$server",fstype=~"xfs|ext4"} * 100)

@@ -1,0 +1,35 @@
+prometheus_local_storage_memory_chunks{job="prometheus",instance="$Prometheus:9090"}
+prometheus_local_storage_chunks_to_persist{job="prometheus",instance="$Prometheus:9090"}
+prometheus_local_storage_max_memory_chunks{job="prometheus",instance="$Prometheus:9090"}
+prometheus_local_storage_max_chunks_to_persist{job="prometheus",instance="$Prometheus:9090"}
+rate(prometheus_local_storage_chunk_ops_total{job="prometheus",instance="$Prometheus:9090",type="create"}[10m])
+rate(prometheus_local_storage_chunk_ops_total{job="prometheus",instance="$Prometheus:9090",type="create"}[1h])
+rate(prometheus_local_storage_chunk_ops_total{job="prometheus",instance="$Prometheus:9090",type="create"}[6h])
+rate(prometheus_local_storage_ingested_samples_total{job="prometheus",instance="$Prometheus:9090"}[1m])
+prometheus_local_storage_persistence_urgency_score{job="prometheus",instance="$Prometheus:9090"}
+rate(prometheus_local_storage_chunk_ops_total{job="prometheus",instance="$Prometheus:9090",type="persist"}[10m])
+rate(prometheus_local_storage_chunk_ops_total{job="prometheus",instance="$Prometheus:9090",type="persist"}[1h])
+rate(prometheus_local_storage_chunk_ops_total{job="prometheus",instance="$Prometheus:9090",type="persist"}[6h])
+prometheus_local_storage_rushed_mode{job="prometheus",instance="$Prometheus:9090"}
+prometheus_local_storage_checkpointing{job="prometheus",instance="$Prometheus:9090"}
+rate(prometheus_local_storage_series_chunks_persisted_sum{job="prometheus",instance="$Prometheus:9090"}[10m]) / rate(prometheus_local_storage_series_chunks_persisted_count{job="prometheus",instance="$Prometheus:9090"}[10m])
+rate(prometheus_local_storage_series_ops_total{job="prometheus",instance="$Prometheus:9090",type="maintenance_in_memory"}[10m])
+rate(prometheus_local_storage_series_chunks_persisted_count{job="prometheus",instance="$Prometheus:9090"}[10m])
+rate(prometheus_local_storage_maintain_series_duration_seconds_sum{job="prometheus",instance="$Prometheus:9090",location="memory"}[10m]) / rate(prometheus_local_storage_maintain_series_duration_seconds_count{job="prometheus",instance="$Prometheus:9090",location="memory"}[10m])
+prometheus_local_storage_checkpoint_last_duration_seconds{job="prometheus",instance="$Prometheus:9090"} or prometheus_local_storage_checkpoint_duration_seconds{job="prometheus",instance="$Prometheus:9090",quantile=""}
+prometheus_local_storage_checkpoint_last_size_bytes{job="prometheus",instance="$Prometheus:9090"}
+irate(prometheus_local_storage_checkpoint_series_chunks_written_sum{job="prometheus",instance="$Prometheus:9090"}[1m])
+process_resident_memory_bytes{job="prometheus",instance="$Prometheus:9090"}
+max_over_time(go_memstats_alloc_bytes{job="prometheus",instance="$Prometheus:9090"}[5m])
+go_memstats_alloc_bytes{job="prometheus",instance="$Prometheus:9090"}
+min_over_time(go_memstats_alloc_bytes{job="prometheus",instance="$Prometheus:9090"}[5m])
+rate(go_memstats_alloc_bytes_total{job="prometheus",instance="$Prometheus:9090"}[1m])
+irate(process_cpu_seconds_total{job="prometheus",instance="$Prometheus:9090"}[1m])
+rate(process_cpu_seconds_total{job="prometheus",instance="$Prometheus:9090"}[5m])
+prometheus_local_storage_memory_series{job="prometheus",instance="$Prometheus:9090"}
+rate(prometheus_local_storage_indexing_batch_sizes_sum{job="prometheus",instance="$Prometheus:9090"}[1m])
+prometheus_local_storage_indexing_queue_length{job="prometheus",instance="$Prometheus:9090"}
+prometheus_local_storage_memory_chunkdescs{job="prometheus",instance="$Prometheus:9090"}
+irate(node_disk_io_time_ms{job="node",instance="$Prometheus:9100"}[1m]) / 1000
+512 * (irate(node_disk_sectors_read{job="node",instance="$Prometheus:9100"}[1m]) + irate(node_disk_sectors_written{job="node",instance="$Prometheus:9100"}[1m]))
+(irate(node_disk_writes_completed{job="node",instance="$Prometheus:9100"}[1m]) + irate(node_disk_reads_completed{job="node",instance="$Prometheus:9100"}[1m]))

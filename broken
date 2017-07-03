@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -eufo pipefail
+trap 'echo "$0: line ${LINENO}: exiting because of error" >&2 ;exit 1' ERR
+
+mv dashboards/597-kubernetes-via-xiaoping378 broken_dashboards
+mv dashboards/210-robustirc broken_dashboards
+mv dashboards/1968- broken_dashboards
+mv dashboards/159-prometheus-system broken_dashboards
+mv dashboards/789-haproxy broken_dashboards
+mv dashboards/2043-tidb-cluster-tikv broken_dashboards
+mv dashboards/1965- broken_dashboards
+mv dashboards/1492-tidb-tikv broken_dashboards
+mv dashboards/2040-tidb-cluster-tidb broken_dashboards

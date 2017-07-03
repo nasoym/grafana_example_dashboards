@@ -1,0 +1,10 @@
+backup_count{host="$host"}
+backup_files{host="$host"}
+backup_last_size{host="$host"}
+backup_count{host="$host"}
+backup_last_size{host="$host"}
+backup_last_size_dedup{host="$host"}
+backup_last_size_compressed{host="$host"}
+backup_total_size{host="$host"}
+backup_total_size_dedup{host="$host"}
+backup_total_size_compressed{host="$host"}

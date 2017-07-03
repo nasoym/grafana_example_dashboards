@@ -1,0 +1,24 @@
+weather_temperature{city="$city"}
+
+weather_apparent_temperature{city="$city"}
+
+100 * weather_humidity{city="$city"}
+weather_precip_probability{city="$city"}
+weather_precip_probability{city="$city"}
+weather_ozone{city="$city"}
+weather_wind_speed{city="$city"}
+weather_cloud_cover{city="$city"}
+weather_visibility{city="$city"}
+weather_temperature{}
+
+weather_apparent_temperature{}
+
+weather_humidity{}
+weather_precip_intensity{}
+weather_ozone{}
+weather_wind_speed{}
+
+weather_cloud_cover{}
+1000 * weather_visibility{}/100
+weather_pressure{}
+weather_dew_point{}

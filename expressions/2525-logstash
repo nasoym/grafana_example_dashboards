@@ -1,0 +1,12 @@
+rate(logstash_node_pipeline_duration_seconds_total[$interval])
+rate(logstash_node_pipeline_events_in_total[$interval])
+rate(logstash_node_pipeline_events_filtered_total[$interval])
+rate(logstash_node_pipeline_events_out_total[$interval])
+sum(rate(logstash_node_plugin_duration_seconds_total[$interval])) by (plugin)
+sum(rate(logstash_node_plugin_failures_total[$interval])) by (plugin)
+sum(rate(logstash_node_plugin_events_in_total[$interval])) by (plugin)
+sum(rate(logstash_node_plugin_events_out_total[$interval])) by (plugin)
+logstash_node_mem_heap_used_bytes
+logstash_node_process_open_filedescriptors
+rate(logstash_node_gc_collection_total[$interval])
+rate(logstash_node_gc_collection_duration_seconds_total[$interval])

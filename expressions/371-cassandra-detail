@@ -1,0 +1,27 @@
+sum(irate(node_cpu{alias="$instance"}[5m])) by (mode) * 100 / count_scalar(node_cpu{mode="user", alias="$instance"})
+node_memory_Buffers{alias="$instance"} * 100/ node_memory_MemTotal
+node_memory_MemFree{alias="$instance"} * 100/ node_memory_MemTotal
+node_memory_Cached{alias="$instance"} * 100/ node_memory_MemTotal
+(node_memory_MemTotal - node_memory_Cached{alias="$instance"} - node_memory_MemFree{alias="$instance"} - node_memory_Buffers{alias="$instance"}) * 100 / node_memory_MemTotal
+node_filesystem_size{alias="$instance", fstype!~"rootfs|selinuxfs|autofs|rpc_pipefs|tmpfs", mountpoint="$mountpoint"} - node_filesystem_avail{alias="$instance", fstype!~"rootfs|selinuxfs|autofs|rpc_pipefs|tmpfs", mountpoint="$mountpoint"}
+node_filesystem_avail{alias="$instance",  fstype!~"rootfs|selinuxfs|autofs|rpc_pipefs|tmpfs", mountpoint="$mountpoint"}
+irate(node_network_receive_bytes{alias="$instance", device!="lo"}[5m])
+irate(node_network_transmit_bytes{alias="$instance", device!="lo"}[5m])
+node_load1{alias="$instance"}
+node_load5{alias="$instance"}
+node_load15{alias="$instance"}
+sum(irate(cassandra_columnfamily_writelatency{alias="$instance"}[5m]))
+sum(irate(cassandra_columnfamily_readlatency{alias="$instance"}[5m]))
+cassandra_filecache_hitrate{alias="$instance"}
+irate(cassandra_clientrequest_latency{alias="$instance"} [5m])
+sum(cassandra_keyspace_livediskspaceused) by (keyspace)
+sum(cassandra_keyspace_memtablelivedatasize) by (keyspace)
+irate(cassandra_keyspace_rangelatency{alias="$instance"}[5m])
+cassandra_client_connectednativeclients{alias="$instance"}
+cassandra_client_connectedthriftclients{alias="$instance"}
+cassandra_cache_capacity{alias="$instance"}
+rate(node_vmstat_pgpgin{alias="$instance"}[5m]) * 1024 or irate(node_vmstat_pgpgin{alias="$instance"}[5m]) * 1024
+rate(node_vmstat_pgpgout{alias="$instance"}[5m]) * 1024 or irate(node_vmstat_pgpgout{alias="$instance"}[5m]) * 1024
+jvm_memory_bytes_max{area="heap",alias="$instance"} / jvm_memory_bytes_max{area="heap", alias="$instance"}
+jvm_memory_pool_bytes_used{alias="$instance"}
+irate(jvm_gc_collection_seconds_sum{alias="$instance"}[5m])

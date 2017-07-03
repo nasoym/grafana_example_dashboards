@@ -1,0 +1,6 @@
+namedprocess_namegroup_num_procs{groupname=~"$processes"}
+rate(namedprocess_namegroup_cpu_seconds_total{groupname=~"$processes"}[$interval])
+rate(namedprocess_namegroup_read_bytes_total{groupname=~"$processes"}[$interval])
+rate(namedprocess_namegroup_write_bytes_total{groupname=~"$processes"}[$interval])
+namedprocess_namegroup_memory_bytes{groupname=~"$processes", memtype="resident"}
+namedprocess_namegroup_memory_bytes{groupname=~"$processes", memtype="virtual"}

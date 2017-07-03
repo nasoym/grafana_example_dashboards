@@ -1,0 +1,33 @@
+max(node_time{alias="openwatt-dns-slave"}) - max(bind_boot_time_seconds{alias="openwatt-dns-slave"})
+max(node_time{alias="openwatt-dns-slave"}) - max(bind_config_time_seconds{alias="openwatt-dns-slave"})
+increase(bind_process_cpu_seconds_total{alias="$alias"}[120s])
+sum(rate(node_cpu{alias="$alias"}[120s])) by (mode) * 100 / count_scalar(node_cpu{mode="user", alias="$alias"}) or sum(irate(node_cpu{alias="$alias"}[120s])) by (mode) * 100 / count_scalar(node_cpu{mode="user", alias="$alias"})
+node_load1{alias="$alias"}
+node_load5{alias="$alias"}
+node_load15{alias="$alias"}
+node_memory_MemTotal{alias="$alias"} - (node_memory_MemFree{alias="$alias"} + node_memory_Buffers{alias="$alias"} + node_memory_Cached{alias="$alias"})
+node_memory_MemFree{alias="$alias"}
+node_memory_Buffers{alias="$alias"}
+node_memory_Cached{alias="$alias"}
+bind_process_max_fds{alias="$alias"}
+bind_process_open_fds{alias="$alias"}
+bind_process_virtual_memory_bytes{alias="$alias"}
+bind_process_resident_memory_bytes{alias="$alias"}
+increase(bind_incoming_queries_total{alias="$alias"}[120s])
+increase(bind_incoming_requests_total{alias="$alias"}[120s])
+increase(bind_responses_total{alias="$alias"}[120s])
+increase(bind_query_duplicates_total{alias="$alias"}[120s])
+increase(bind_query_errors_total{alias="$alias"}[120s])
+increase(bind_query_recursions_total{alias="$alias"}[120s])
+bind_resolver_cache_rrsets{alias="$alias"}
+increase(bind_resolver_dnssec_validation_errors_total{alias="$alias"}[120s])
+increase(bind_resolver_dnssec_validation_success_total{alias="$alias"}[120s])
+increase(bind_resolver_queries_total{alias="$alias"}[120s])
+increase(bind_resolver_query_errors_total{alias="$alias"}[120s])
+increase(bind_resolver_query_edns0_errors_total{alias="$alias"}[120s])
+increase(bind_resolver_query_retries_total{alias="$alias"}[120s])
+increase(bind_resolver_query_duration_seconds_bucket{alias="$alias"}[120s])
+increase(bind_resolver_response_errors_total{alias="$alias"}[120s])
+increase(bind_resolver_response_lame_total{alias="$alias"}[120s])
+increase(bind_resolver_response_mismatch_total{alias="$alias"}[120s])
+increase(bind_resolver_response_truncated_total{alias="$alias"}[120s])

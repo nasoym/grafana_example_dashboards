@@ -1,0 +1,3 @@
+sum (ci_runner_builds{instance=~"$runner",state="running"}) by (executor_stage)
+ci_runner_builds{instance=~"$runner", state="pending"}
+increase(ci_runner_errors{instance=~"$runner"}[10m])

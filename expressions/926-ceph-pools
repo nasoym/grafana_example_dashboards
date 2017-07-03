@@ -1,0 +1,11 @@
+ceph_pool_available_bytes{pool=~"$pool"}
+ceph_pool_used_bytes{pool=~"$pool"}
+ceph_pool_used_bytes{pool=~"$pool"} + ceph_pool_available_bytes{pool=~"$pool"}
+ceph_pool_raw_used_bytes{pool=~"$pool"}
+ ceph_pool_used_bytes{pool="$pool"} / (ceph_pool_available_bytes{pool="$pool"} + ceph_pool_used_bytes{pool="$pool"})
+ceph_pool_objects_total{pool=~"$pool"}
+ceph_pool_dirty_objects_total{pool=~"$pool"}
+irate(ceph_pool_read_total{pool=~"$pool"}[3m])
+irate(ceph_pool_write_total{pool=~"$pool"}[3m])
+irate(ceph_pool_read_bytes_total{pool="$pool"}[3m])
+irate(ceph_pool_write_bytes_total{pool="$pool"}[3m])

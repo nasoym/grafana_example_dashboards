@@ -1,0 +1,12 @@
+sensor_lm_temperature_celsius
+deriv(sensor_lm_temperature_celsius[$interval]) > 0.00001 or deriv(sensor_lm_temperature_celsius[$interval]) < -0.00001
+sensor_lm_fan_speed_rpm
+deriv(sensor_lm_fan_speed_rpm[$interval])
+sensor_lm_voltage_volts
+deriv(sensor_lm_voltage_volts[$interval])
+process_resident_memory_bytes{job="sensor"}
+deriv(process_resident_memory_bytes{job="sensor"}[$interval])
+up{job="sensor"}
+scrape_duration_seconds{job="sensor"}
+sensor_hddsmart_temperature_celsius
+deriv(sensor_hddsmart_temperature_celsius[$interval])

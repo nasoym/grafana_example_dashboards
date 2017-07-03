@@ -1,0 +1,16 @@
+consul_raft_leader_lastcontact_count
+COUNT (changes(consul_memberlist_gossep_sum[1m]) > 0) BY (labels)
+sum(irate(node_cpu{mode="idle", host="$consul"}[1m])) * 100 / count_scalar(node_cpu{mode="user", host="$consul"})
+node_load1{host="$consul"}
+node_load5{host="$consul"}
+node_load15{host="$consul"}
+irate(consul_memberlist_tcp{host="$consul"}[1m])
+irate(consul_memberlist_udp{host="$consul"}[1m])
+consul_raft_replication_appendEntries_rpc
+consul_raft_replication_heartbeat
+consul_raft_leader_dispatchLog
+consul_raft_commitTime
+delta(consul_raft_apply[30s])
+consul_raft_leader_lastcontact
+delta(consul_rpc_query{host="$consul"}[30s])
+consul_serf_coordinate_adjustment_ms{host="$consul"}

@@ -1,0 +1,15 @@
+sum by (mode) (rate(wmi_cpu_time_total{instance=~"$server"}[5m]))
+wmi_system_threads{instance=~"$server"}
+rate(wmi_system_exception_dispatches_total{instance=~"$server"}[$interval])
+irate(wmi_net_packets_outbound_discarded{instance=~"$server", nic!~"isatap.+"}[$interval]) + irate(wmi_net_packets_outbound_errors{instance=~"$server"}[$interval])
+irate(wmi_net_packets_received_discarded{instance=~"$server", nic!~"isatap.+"}[$interval]) + irate(wmi_net_packets_received_errors{instance=~"$server"}[$interval])
+rate(wmi_net_bytes_sent_total{instance=~"$server"}[$interval]) >0
+- rate(wmi_net_bytes_received_total{instance=~"$server"}[$interval]) <0
+irate(wmi_logical_disk_write_bytes_total{instance=~"$server", volume !~"HarddiskVolume.+"}[$interval])
+- irate(wmi_logical_disk_read_bytes_total{instance=~"$server", volume !~"HarddiskVolume.+"}[$interval])
+rate(wmi_logical_disk_split_ios_total{instance=~"$server", volume !~"HarddiskVolume.+"}[30s])
+wmi_logical_disk_free_bytes{instance=~"$server", volume !~"HarddiskVolume.+"}
+wmi_os_virtual_memory_bytes{instance=~"$server"}
+wmi_cs_physical_memory_bytes{instance=~"$server"}
+wmi_os_physical_memory_free_bytes{instance=~"$server"}
+sum(wmi_service_state{instance=~"$server"}) by (state)

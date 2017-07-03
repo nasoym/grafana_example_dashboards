@@ -1,0 +1,9 @@
+docker_hub_pulls_total{image="ubuntu"}
+sum(docker_hub_pulls_total{image="ubuntu"})
+rate(docker_hub_pulls_total{image="ubuntu"}[1m]) * 60 
+docker_hub_pulls_total{image="alpine"}
+sum(docker_hub_pulls_total{image="alpine"})
+rate(docker_hub_pulls_total{image="alpine"}[1m]) * 60 
+docker_hub_pulls_total{image="cadvisor"}
+sum(docker_hub_pulls_total{image="cadvisor"})
+rate(docker_hub_pulls_total{image="cadvisor"}[1m]) * 60 

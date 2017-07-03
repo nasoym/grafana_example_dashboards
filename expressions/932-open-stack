@@ -1,0 +1,37 @@
+count (system_uptime{})
+10 - count (system_uptime{})
+count (system_uptime{})
+count (count  by (instance) (container_cpu_system_seconds_total{container_name=~"neutron-server|nova-api|nova-conductor|nova-consoleauth|nova-novncproxy|nova-scheduler|neutron-metadata-agent|etcd|glance-api|glance-registry|horizon|keystone|memcached|neutron-dhcp-agent|neutron-l3-agent|neutron-metadata-agent", container_name!=""}))
+ count by (container_name) (container_cpu_system_seconds_total{container_name=~"neutron-server|nova-api|nova-conductor|nova-consoleauth|nova-novncproxy|nova-scheduler|neutron-metadata-agent|etcd|glance-api|glance-registry|horizon|keystone|memcached|neutron-dhcp-agent|neutron-l3-agent|neutron-metadata-agent", container_name!=""})
+count (count  by (instance) (container_cpu_system_seconds_total{container_name=~"nova-compute|nova-libvirit", container_name!=""}))
+ count by (container_name) (container_cpu_system_seconds_total{container_name=~"nova-compute|nova-libvirt", container_name!=""})
+count (container_cpu_system_seconds_total{container_name=~"mariadb", container_name!=""})
+ count by (container_name) (container_cpu_system_seconds_total{container_name=~"mariadb", container_name!=""})
+count (count  by (instance) (container_cpu_system_seconds_total{container_name=~"rabbitmq", container_name!=""}))
+ count by (container_name) (container_cpu_system_seconds_total{container_name=~"rabbitmq", container_name!=""})
+count (count  by (instance) (container_cpu_system_seconds_total{container_name=~"neutron-openvswitch-agent|openvswitch-db|openvswitch-vswitchd", container_name!=""}))
+ count by (container_name) (container_cpu_system_seconds_total{container_name=~"neutron-openvswitch-agent|openvswitch-db|openvswitch-vswitchd", container_name!=""})
+count (count  by (instance) (container_cpu_system_seconds_total{container_name=~"elasticsearch|kibana", container_name!=""}))
+ count by (container_name) (container_cpu_system_seconds_total{container_name=~"elasticsearch|kibana", container_name!=""})
+count (count  by (instance) (container_cpu_system_seconds_total{container_name=~"heka", container_name!=""}))
+ count by (container_name) (container_cpu_system_seconds_total{container_name=~"heka", container_name!=""})
+count  (openstack_hypervisor_running_vms{})
+openstack_hypervisor_total_running_vms{}
+openstack_hypervisor_running_vms{hypervisor=~"$hypervisor"}
+openstack_hypervisor_memory_used{hypervisor=~"$hypervisor"}
+openstack_hypervisor_total_vcpus{}
+openstack_hypervisor_total_vcpus_used{}
+openstack_hypervisor_vcpus_used {hypervisor=~"$hypervisor"}
+openstack_hypervisor_vcpus{hypervisor=~"$hypervisor"}
+openstack_identity_total_projects{}
+openstack_identity_total_projects{}
+openstack_server_state_total_active{}
+openstack_server_state_active{host="node1",project=~"$project"}
+openstack_server_stats_total_vcpus{}
+openstack_server_stats_vcpus{}
+openstack_server_stats_total_disk{}
+openstack_server_stats_disk{}
+openstack_server_stats_total_ram{}
+openstack_server_stats_ram{project=~"$project"}
+sum by (container) (os_api_response_time_processingtime{}) / count by (container) (os_api_response_time_processingtime{})
+vm_spawn_avg_time_timediffinsec{}

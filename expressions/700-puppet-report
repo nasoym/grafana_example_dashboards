@@ -1,0 +1,10 @@
+time()-puppet_report{host="$host",environment="$environment"}/1000 > -1
+puppet_report_events{host="$host",environment="$environment",name="Total"} > -1
+puppet_report_events{name="Failure",host="$host",environment="$environment"} > -1
+puppet_report_events{host="$host",environment="$environment",name="Success"} > -1
+puppet_report_resources{name="Total",host="$host",environment="$environment"} > -1
+puppet_report_changes{host="$host",environment="$environment"}
+topk(7,puppet_report_time{host="$host",environment="$environment"} > - 1)
+puppet_report_resources{host="$host",environment="$environment"} > -1
+puppet_report_time{name=~"Config retrieval|Total",host="$host",environment="$environment"} > -1
+puppet_report_resources{host="$host",environment="$environment"} > -1

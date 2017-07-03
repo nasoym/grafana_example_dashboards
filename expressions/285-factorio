@@ -1,0 +1,18 @@
+rate(factorio_chunks_generated[30s])
+factorio_pollution_total
+irate(factorio_deaths[5m])
+factorio_evolution_factor
+factorio_energy{entity_name="accumulators"}
+factorio_furnaces{product="iron-plate"}
+factorio_furnaces{product="copper-plate"}
+factorio_furnaces{product="steel-plate"}
+factorio_assemblers > 3
+factorio_hasinput
+factorio_fluid_stored
+deriv(factorio_fluid_stored{resource_name=~".*oil|lubr.*|petrol.*"}[5m])
+topk(5,sum(factorio_objects_owned{container=~".+"}) by (item))
+topk(6,sum(factorio_objects_owned{container=~".+", item!~".*(stone.*|wood|coal|ore|plate)"}) by (item))
+topk(2,factorio_objects{placement="inventory"})
+irate(factorio_resource_mined_total[5m])
+sum(factorio_resource_remaining) by (resource_name)
+sum by(resource_name) (deriv(factorio_resource_remaining[10m]))

@@ -1,0 +1,12 @@
+grafana_api_proxy_request_duration_seconds_min{instance="$server"}
+grafana_api_proxy_request_duration_seconds_mean{instance="$server"}
+grafana_api_proxy_request_duration_seconds_max{instance="$server"}
+irate(grafana_api_proxy_requests{instance="$server"}[1m])
+grafana_api_request_duration_seconds_min{instance="$server",endpoint="dashboard",action="search"}
+grafana_api_request_duration_seconds_mean{instance="$server",endpoint="dashboard",action="search"}
+grafana_api_request_duration_seconds_max{instance="$server",endpoint="dashboard",action="search"}
+irate(grafana_api_requests{instance="$server",endpoint="dashboard",action="search"}[1m])
+grafana_api_request_duration_seconds_mean{instance="$server",endpoint="dashboard",action="save"}
+grafana_api_request_duration_seconds_mean{instance="$server",endpoint="dashboard",action="get"}
+sum(sum_over_time(grafana_api_requests{instance="$server",endpoint="login"}[10m]))
+sum(sum_over_time(grafana_api_requests{instance="$server",endpoint="dashboard",action="get"}[10m]))

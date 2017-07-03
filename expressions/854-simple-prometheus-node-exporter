@@ -1,0 +1,13 @@
+sum(irate(node_cpu{mode!="idle", instance="$server"}[1m])) by (mode)
+node_load1{instance="$server"}
+irate(node_network_receive_bytes{instance="$server"}[1m])
+irate(node_network_transmit_bytes{instance="$server"}[1m])
+node_memory_MemTotal{instance="$server"} - node_memory_MemFree{instance="$server"} - node_memory_Buffers{instance="$server"} - node_memory_Cached{instance="$server"}
+node_memory_Buffers{instance="$server"}
+node_memory_Cached{instance="$server"}
+node_memory_MemFree{instance="$server"}
+irate(node_disk_bytes_read{instance="$server"}[1m])
+irate(node_disk_bytes_written{instance="$server"}[1m])
+node_disk_io_now{instance="$server"}
+irate(node_disk_io_time_ms{instance="$server"}[1m])
+(node_filesystem_size{instance="$server"} - node_filesystem_avail{instance="$server"})/ node_filesystem_size{instance="$server"}

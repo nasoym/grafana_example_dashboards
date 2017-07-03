@@ -1,0 +1,7 @@
+sum(nginx_kubeingress_server_connections) by (status)
+sum(nginx_kubeingress_server_bytes{host=~"^$Host$"}) by (direction)
+sum(nginx_kubeingress_server_requests{code!="total"}) by (code)
+sum(nginx_kubeingress_server_cache{host=~"^$Host$"}) by (status)
+sum(nginx_kubeingress_upstream_bytes{upstream=~"^$Upstream$"}) by (direction)
+sum(nginx_kubeingress_upstream_requests{upstream=~"^$Upstream$",code!="total"}) by (code)
+sum(nginx_kubeingress_upstream_response{upstream=~"^$Upstream$"}) by (backend)

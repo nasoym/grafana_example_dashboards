@@ -1,0 +1,8 @@
+avg without (cpu)(irate(node_cpu{job="node",instance="$instance",mode!="idle"}[5m]))
+node_memory_MemTotal{job='node',instance='$instance'} - node_memory_MemFree{job='node',instance='$instance'} - node_memory_Buffers{job='node',instance='$instance'} - node_memory_Cached{job='node',instance='$instance'}
+node_memory_Buffers{job='node',instance='$instance'}
+node_memory_Cached{job='node',instance='$instance'}
+node_memory_MemFree{job='node',instance='$instance'}
+irate(node_disk_io_time_ms{job='node',instance='$instance',device!~'^(md\\d+$|dm-)'}[5m]) / 1000
+1 - node_filesystem_free{job='node',instance='$instance',fstype!='rootfs',mountpoint!~'/(run|var).*',mountpoint!=''} / node_filesystem_size{job='node',instance='$instance'}
+(node_filesystem_size{job='node',instance='$instance'} - node_filesystem_free{job='node',instance='$instance'}) / deriv(node_filesystem_free{job='node',instance='$instance',fstype!='rootfs',mountpoint!~'/(run|var).*',mountpoint!=''}[3d]) > 0

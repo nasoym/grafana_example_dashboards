@@ -1,0 +1,37 @@
+count(ceph_health_status)
+ceph_monitor_quorum_count
+count(ceph_pool_available_bytes)
+ceph_cluster_capacity_bytes
+ceph_cluster_used_bytes
+ceph_cluster_available_bytes/ceph_cluster_capacity_bytes
+ceph_osds_in
+ceph_osds - ceph_osds_in
+sum(ceph_osd_up)
+ceph_osds_down
+avg(ceph_osd_pgs)
+avg(ceph_osd_perf_apply_latency_seconds)
+avg(ceph_osd_perf_commit_latency_seconds)
+avg(ceph_monitor_latency_seconds)
+ceph_cluster_available_bytes
+ceph_cluster_used_bytes
+ceph_cluster_capacity_bytes
+ceph_client_io_write_ops
+ceph_client_io_read_ops
+ceph_client_io_write_bytes
+ceph_client_io_read_bytes
+ceph_cluster_objects
+ceph_degraded_objects
+ceph_misplaced_objects
+sum(ceph_osd_pgs)
+ceph_degraded_pgs
+ceph_stale_pgs
+ceph_unclean_pgs
+ceph_undersized_pgs
+ceph_stuck_degraded_pgs + ceph_stuck_stale_pgs + ceph_stuck_unclean_pgs + ceph_stuck_undersized_pgs
+ceph_stuck_degraded_pgs
+ceph_stuck_stale_pgs
+ceph_stuck_unclean_pgs
+ceph_stuck_undersized_pgs
+ceph_recovery_io_bytes
+ceph_recovery_io_keys
+ceph_recovery_io_objects

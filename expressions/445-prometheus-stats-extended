@@ -1,0 +1,15 @@
+(time() - process_start_time_seconds{job="prometheus"})
+prometheus_local_storage_memory_series
+prometheus_local_storage_indexing_queue_length
+prometheus_local_storage_checkpoint_duration_seconds
+rate(prometheus_target_interval_length_seconds_count[5m])
+prometheus_target_interval_length_seconds{quantile!="0.01", quantile!="0.05"}
+prometheus_evaluator_duration_milliseconds{quantile!="0.01", quantile!="0.05"}
+rate(prometheus_local_storage_ingested_samples_total[1m])
+prometheus_local_storage_persistence_urgency_score
+prometheus_local_storage_rushed_mode
+prometheus_local_storage_chunks_to_persist
+rate(prometheus_local_storage_chunk_ops_total[1m])
+rate(prometheus_local_storage_series_ops_total[1m])
+rate(process_cpu_seconds_total[1m])
+process_resident_memory_bytes

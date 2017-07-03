@@ -1,0 +1,19 @@
+irate(haproxy_server_http_responses_total{backend=~"$backend", server=~"$server", code=~"$code", alias="$alias"}[180s])
+avg(haproxy_server_check_duration_milliseconds{backend=~"$backend", server=~"$server", alias="$alias"}) without (alias)
+irate(haproxy_server_check_failures_total{backend=~"$backend", server=~"$server", alias="$alias"}[180s])
+irate(haproxy_server_downtime_seconds_total{backend=~"$backend", server=~"$server", alias="$alias"}[180s])
+irate(haproxy_server_redispatch_warnings_total{backend=~"$backend", server=~"$server", alias="$alias"}[180s])
+irate(haproxy_server_response_errors_total{backend=~"$backend", server=~"$server", alias="$alias"}[180s])
+irate(haproxy_server_retry_warnings_total{backend=~"$backend", server=~"$server", alias="$alias"}[180s])
+irate(haproxy_server_bytes_in_total{backend=~"$backend", server=~"$server", alias="$alias"}[180s])
+irate(haproxy_server_bytes_out_total{backend=~"$backend", server=~"$server", alias="$alias"}[180s])
+irate(haproxy_server_connections_total{backend=~"$backend", server=~"$server", alias="$alias"}[180s])
+irate(haproxy_server_connection_errors_total{backend=~"$backend", server=~"$server", alias="$alias"}[180s])
+haproxy_server_current_queue{backend=~"$backend", server=~"$server", alias="$alias"}
+haproxy_server_max_queue{backend=~"$backend", server=~"$server", alias="$alias"}
+haproxy_server_current_sessions{backend=~"$backend", server=~"$server", alias="$alias"}
+haproxy_server_current_session_rate{backend=~"$backend", server=~"$server", alias="$alias"}
+haproxy_server_max_sessions{backend=~"$backend", server=~"$server", alias="$alias"}
+haproxy_server_max_session_rate{backend=~"$backend", server=~"$server", alias="$alias"}
+haproxy_server_up{backend=~"$backend", server=~"$server", alias="$alias"}
+haproxy_server_weight{backend=~"$backend", server=~"$server", alias="$alias"}

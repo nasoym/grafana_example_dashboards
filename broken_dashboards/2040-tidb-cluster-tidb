@@ -3381,6 +3381,5 @@
   "schemaVersion": 14,
   "annotations": {
     "list": []
-  },
-  "templating": {
-    "l
+  }
+}

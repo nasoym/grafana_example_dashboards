@@ -33,7 +33,7 @@
     "list": []
   },
   "editable": true,
-  "gnetId": 1965,
+  "gnetId": 1968,
   "graphTooltip": 0,
   "hideControls": false,
   "id": null,
@@ -61,7 +61,7 @@
               {
                 "evaluator": {
                   "params": [
-                    1077926421
+                    46680602
                   ],
                   "type": "gt"
                 },
@@ -85,128 +85,8 @@
             "executionErrorState": "alerting",
             "frequency": "60s",
             "handler": 1,
-            "message": "弹性数据库-Mysql内存使用量超过阈值",
-            "name": "Mysql容器内存使用量告警",
-            "noDataState": "no_data",
-            "notifications": [
-              {
-                "id": 3
-              }
-            ]
-          },
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "fill": 1,
-          "id": 11,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": false,
-            "max": false,
-            "min": false,
-            "rightSide": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(container_memory_working_set_bytes{pod_name=~\"vttablet.*\", container_name=\"mysql\", beta_kubernetes_io_arch=~\"\"}) by (pod_name)",
-              "interval": "10s",
-              "intervalFactor": 2,
-              "legendFormat": "{{pod_name}}",
-              "refId": "A",
-              "step": 20
-            }
-          ],
-          "thresholds": [
-            {
-              "colorMode": "critical",
-              "fill": true,
-              "line": true,
-              "op": "gt",
-              "value": 1077926421
-            }
-          ],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Mysql容器内存使用量",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "decbytes",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        },
-        {
-          "alert": {
-            "conditions": [
-              {
-                "evaluator": {
-                  "params": [
-                    106688963
-                  ],
-                  "type": "gt"
-                },
-                "operator": {
-                  "type": "and"
-                },
-                "query": {
-                  "params": [
-                    "A",
-                    "5m",
-                    "now"
-                  ]
-                },
-                "reducer": {
-                  "params": [],
-                  "type": "avg"
-                },
-                "type": "query"
-              }
-            ],
-            "executionErrorState": "alerting",
-            "frequency": "60s",
-            "handler": 1,
-            "message": "弹性数据库-Vttablet内存使用量超过阈值",
-            "name": "Vttablet内存使用量告警",
+            "message": "弹性数据库Vtgate-内存使用量",
+            "name": "Vtgate-内存使用量告警",
             "noDataState": "no_data",
             "notifications": [
               {
@@ -218,7 +98,7 @@
           "bars": false,
           "datasource": "${DS_PROMETHEUS}",
           "fill": 1,
-          "id": 12,
+          "id": 3,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -239,17 +119,17 @@
           "points": false,
           "renderer": "flot",
           "seriesOverrides": [],
-          "span": 6,
+          "span": 12,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(container_memory_working_set_bytes{pod_name=~\"^vttablet.*\", container_name=\"vttablet\", beta_kubernetes_io_arch=~\"\"}) by (pod_name)",
+              "expr": "sum(container_memory_working_set_bytes{container_name=\"vtgate\", pod_name=~\"^vtgate.*\",beta_kubernetes_io_arch=~\"\"}) by (pod_name)",
               "interval": "10s",
-              "intervalFactor": 2,
+              "intervalFactor": 1,
               "legendFormat": "{{pod_name}}",
               "refId": "A",
-              "step": 20
+              "step": 10
             }
           ],
           "thresholds": [
@@ -258,12 +138,12 @@
               "fill": true,
               "line": true,
               "op": "gt",
-              "value": 106688963
+              "value": 46680602
             }
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Vttablet内存使用量",
+          "title": "Vtgate-内存使用量",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -337,8 +217,8 @@
             "executionErrorState": "alerting",
             "frequency": "60s",
             "handler": 1,
-            "message": "弹性数据库-Mysql CPU使用量超过阈值",
-            "name": "Mysql-CPU使用量告警",
+            "message": "弹性数据库Vtgate-内存使用量超过阈值",
+            "name": "Vtgate-CPU使用量告警",
             "noDataState": "no_data",
             "notifications": [
               {
@@ -350,7 +230,7 @@
           "bars": false,
           "datasource": "${DS_PROMETHEUS}",
           "fill": 1,
-          "id": 13,
+          "id": 5,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -359,7 +239,6 @@
             "min": false,
             "rightSide": true,
             "show": true,
-            "sideWidth": 150,
             "total": false,
             "values": true
           },
@@ -372,12 +251,12 @@
           "points": false,
           "renderer": "flot",
           "seriesOverrides": [],
-          "span": 6,
+          "span": 12,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum (rate (container_cpu_usage_seconds_total{pod_name=~\"^vttablet.*\",container_name=\"mysql\", beta_kubernetes_io_arch=~\"\"}[1m]))  by (pod_name)",
+              "expr": "sum(rate(container_cpu_usage_seconds_total{pod_name=~\"^vtgate.*\", container_name=\"vtgate\",beta_kubernetes_io_arch=~\"\"}[1m]))by (pod_name)",
               "interval": "10s",
               "intervalFactor": 1,
               "legendFormat": "{{pod_name}}",
@@ -396,128 +275,7 @@
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Mysql-CPU使用量",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "none",
-              "label": "单核",
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        },
-        {
-          "alert": {
-            "conditions": [
-              {
-                "evaluator": {
-                  "params": [
-                    1
-                  ],
-                  "type": "gt"
-                },
-                "operator": {
-                  "type": "and"
-                },
-                "query": {
-                  "params": [
-                    "A",
-                    "5m",
-                    "now"
-                  ]
-                },
-                "reducer": {
-                  "params": [],
-                  "type": "avg"
-                },
-                "type": "query"
-              }
-            ],
-            "executionErrorState": "alerting",
-            "frequency": "60s",
-            "handler": 1,
-            "message": "弹性数据库-Vttablet CPU使用量超过阈值",
-            "name": "Vttablet-CPU使用量告警",
-            "noDataState": "no_data",
-            "notifications": [
-              {
-                "id": 2
-              }
-            ]
-          },
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "fill": 1,
-          "id": 14,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": false,
-            "max": false,
-            "min": false,
-            "rightSide": true,
-            "show": true,
-            "sideWidth": 150,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum (rate (container_cpu_usage_seconds_total{pod_name=~\"^vttablet.*\",container_name=\"vttablet\", beta_kubernetes_io_arch=~\"\"}[1m])) by (pod_name)",
-              "interval": "10s",
-              "intervalFactor": 1,
-              "legendFormat": "{{pod_name}}",
-              "refId": "A",
-              "step": 10
-            }
-          ],
-          "thresholds": [
-            {
-              "colorMode": "critical",
-              "fill": true,
-              "line": true,
-              "op": "gt",
-              "value": 1
-            }
-          ],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Vttablet-CPU使用量",
+          "title": "Vtgate-CPU使用量",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -567,7 +325,7 @@
               {
                 "evaluator": {
                   "params": [
-                    5120
+                    5024
                   ],
                   "type": "gt"
                 },
@@ -591,7 +349,7 @@
             "executionErrorState": "alerting",
             "frequency": "60s",
             "handler": 1,
-            "message": "弹性数据库 POD网络I/O - 网络流入量超过阈值",
+            "message": "弹性数据库POD网络I/O - 网络流入量超过阈值",
             "name": "POD网络I/O - 网络流入告警",
             "noDataState": "no_data",
             "notifications": [
@@ -604,7 +362,7 @@
           "bars": false,
           "datasource": "${DS_PROMETHEUS}",
           "fill": 1,
-          "id": 15,
+          "id": 6,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -613,7 +371,6 @@
             "min": false,
             "rightSide": true,
             "show": true,
-            "sideWidth": 150,
             "total": false,
             "values": true
           },
@@ -631,7 +388,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum (rate (container_network_receive_bytes_total{pod_name=~\"^vttablet.*\", beta_kubernetes_io_arch=~\"\"}[1m])) by (pod_name)",
+              "expr": "sum (rate (container_network_receive_bytes_total{pod_name=~\"^vtgate.*\",beta_kubernetes_io_arch=~\"\"}[1m])) by (pod_name)",
               "interval": "10s",
               "intervalFactor": 1,
               "legendFormat": "{{pod_name}}",
@@ -645,7 +402,7 @@
               "fill": true,
               "line": true,
               "op": "gt",
-              "value": 5120
+              "value": 5024
             }
           ],
           "timeFrom": null,
@@ -665,8 +422,8 @@
           },
           "yaxes": [
             {
-              "format": "Bps",
-              "label": "核数",
+              "format": "decbytes",
+              "label": null,
               "logBase": 1,
               "max": null,
               "min": null,
@@ -688,7 +445,7 @@
               {
                 "evaluator": {
                   "params": [
-                    5120
+                    5024
                   ],
                   "type": "gt"
                 },
@@ -712,8 +469,8 @@
             "executionErrorState": "alerting",
             "frequency": "60s",
             "handler": 1,
-            "message": "弹性数据库POD网络I/O - 网络流出量超过阈值",
-            "name": "POD网络I/O - 网络流出告警",
+            "message": "弹性数据库POD网络I/O -  网络流出量超过阈值",
+            "name": "POD网络I/O -  网络流出告警",
             "noDataState": "no_data",
             "notifications": [
               {
@@ -725,7 +482,7 @@
           "bars": false,
           "datasource": "${DS_PROMETHEUS}",
           "fill": 1,
-          "id": 16,
+          "id": 7,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -734,7 +491,6 @@
             "min": false,
             "rightSide": true,
             "show": true,
-            "sideWidth": 150,
             "total": false,
             "values": true
           },
@@ -752,7 +508,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum (rate (container_network_transmit_bytes_total{pod_name=~\"^vttablet.*\", beta_kubernetes_io_arch=~\"\"}[1m])) by (pod_name)",
+              "expr": "sum (rate (container_network_transmit_bytes_total{pod_name=~\"^vtgate.*\",beta_kubernetes_io_arch=~\"\"}[1m])) by (pod_name)",
               "interval": "10s",
               "intervalFactor": 1,
               "legendFormat": "{{pod_name}}",
@@ -766,12 +522,12 @@
               "fill": true,
               "line": true,
               "op": "gt",
-              "value": 5120
+              "value": 5024
             }
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "POD网络I/O - 网络流出",
+          "title": "POD网络I/O -  网络流出",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -786,8 +542,8 @@
           },
           "yaxes": [
             {
-              "format": "Bps",
-              "label": "核数",
+              "format": "decbytes",
+              "label": null,
               "logBase": 1,
               "max": null,
               "min": null,
@@ -821,10 +577,7 @@
     "list": []
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-3h",
     "to": "now"
-  },
-  "timepicker": {
-    "refresh_intervals": [
-      "5s",
-      "10s",
+  }
+}

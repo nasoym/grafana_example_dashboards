@@ -1,0 +1,1062 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "3.1.1"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    }
+  ],
+  "id": null,
+  "title": "MistServer Vitals",
+  "tags": [],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "hideControls": false,
+  "sharedCrosshair": true,
+  "rows": [
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "100px",
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "${DS_PROMETHEUS}",
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "hideTimeOverride": false,
+          "id": 10,
+          "interval": null,
+          "isNew": true,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "%",
+          "postfixFontSize": "80%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(101, 0, 0, 0.18)",
+            "full": false,
+            "lineColor": "rgb(138, 0, 0)",
+            "show": true
+          },
+          "targets": [
+            {
+              "expr": "mist_cpu{instance=\"$srv\"}/10",
+              "intervalFactor": 1,
+              "legendFormat": "",
+              "refId": "A",
+              "step": 30
+            }
+          ],
+          "thresholds": "60,90",
+          "timeFrom": null,
+          "title": "CPU",
+          "transparent": true,
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "${DS_PROMETHEUS}",
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "hideTimeOverride": false,
+          "id": 11,
+          "interval": null,
+          "isNew": true,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "%",
+          "postfixFontSize": "80%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(0, 69, 3, 0.18)",
+            "full": false,
+            "lineColor": "rgb(0, 165, 0)",
+            "show": true
+          },
+          "targets": [
+            {
+              "expr": "(mist_mem_used{instance=\"$srv\"}+mist_shm_used{instance=\"$srv\"}) / mist_mem_total{instance=\"$srv\"} * 100",
+              "intervalFactor": 1,
+              "legendFormat": "",
+              "refId": "A",
+              "step": 30
+            }
+          ],
+          "thresholds": "60,90",
+          "timeFrom": null,
+          "title": "Memory usage",
+          "transparent": true,
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_PROMETHEUS}",
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "hideTimeOverride": false,
+          "id": 12,
+          "interval": null,
+          "isNew": true,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "80%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(5, 108, 0, 0.18)",
+            "full": false,
+            "lineColor": "rgb(64, 255, 0)",
+            "show": true
+          },
+          "targets": [
+            {
+              "expr": "mist_sessions_total{instance=\"$srv\",sessType=\"viewers\"}",
+              "intervalFactor": 1,
+              "legendFormat": "",
+              "refId": "A",
+              "step": 30
+            }
+          ],
+          "thresholds": "1,1",
+          "timeFrom": null,
+          "title": "Viewers",
+          "transparent": true,
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_PROMETHEUS}",
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "hideTimeOverride": false,
+          "id": 13,
+          "interval": null,
+          "isNew": true,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "80%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(129, 0, 0, 0.18)",
+            "full": false,
+            "lineColor": "rgb(255, 0, 0)",
+            "show": true
+          },
+          "targets": [
+            {
+              "expr": "mist_sessions_total{instance=\"$srv\",sessType=\"incoming\"}",
+              "intervalFactor": 1,
+              "legendFormat": "",
+              "refId": "A",
+              "step": 30
+            }
+          ],
+          "thresholds": "1,1",
+          "timeFrom": null,
+          "title": "Incoming",
+          "transparent": true,
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_PROMETHEUS}",
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "hideTimeOverride": false,
+          "id": 14,
+          "interval": null,
+          "isNew": true,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "80%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(107, 129, 0, 0.18)",
+            "full": false,
+            "lineColor": "rgb(223, 255, 0)",
+            "show": true
+          },
+          "targets": [
+            {
+              "expr": "mist_sessions_total{instance=\"$srv\",sessType=\"outgoing\"}",
+              "intervalFactor": 1,
+              "legendFormat": "",
+              "refId": "A",
+              "step": 30
+            }
+          ],
+          "thresholds": "1,1",
+          "timeFrom": null,
+          "title": "Outgoing",
+          "transparent": true,
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_PROMETHEUS}",
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "",
+          "id": 8,
+          "interval": null,
+          "isNew": true,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "expr": "mist_sessions_count{instance=\"$srv\",sessType=\"viewers\"}",
+              "intervalFactor": 2,
+              "legendFormat": "",
+              "metric": "mist_sessions_count",
+              "refId": "A",
+              "step": 60
+            }
+          ],
+          "thresholds": "",
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Viewcount",
+          "transparent": true,
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [],
+          "valueName": "current"
+        }
+      ],
+      "title": "Bandwidth"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "300px",
+      "panels": [
+        {
+          "aliasColors": {
+            "CPU percent": "#890F02",
+            "RAM bytes": "#7EB26D",
+            "RAM percent": "#3F6833",
+            "SHM bytes": "#E5A8E2",
+            "SHM percent": "#584477"
+          },
+          "bars": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 6,
+          "isNew": true,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "RAM bytes",
+              "yaxis": 2
+            },
+            {
+              "alias": "SHM bytes",
+              "yaxis": 2
+            }
+          ],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "mist_cpu{instance=\"$srv\"}/10",
+              "intervalFactor": 2,
+              "legendFormat": "CPU percent",
+              "metric": "mist_cpu",
+              "refId": "A",
+              "step": 10
+            },
+            {
+              "expr": "mist_mem_used{instance=\"$srv\"} / mist_mem_total{instance=\"$srv\"} * 100",
+              "intervalFactor": 2,
+              "legendFormat": "RAM percent",
+              "metric": "mist",
+              "refId": "B",
+              "step": 10
+            },
+            {
+              "expr": "mist_mem_used{instance=\"$srv\"}",
+              "hide": false,
+              "intervalFactor": 2,
+              "legendFormat": "RAM bytes",
+              "refId": "C",
+              "step": 10
+            },
+            {
+              "expr": "mist_shm_used{instance=\"$srv\"}",
+              "hide": false,
+              "intervalFactor": 2,
+              "legendFormat": "SHM bytes",
+              "refId": "D",
+              "step": 10
+            },
+            {
+              "expr": "mist_shm_used{instance=\"$srv\"} / mist_shm_total{instance=\"$srv\"} * 100",
+              "intervalFactor": 2,
+              "legendFormat": "SHM percent",
+              "metric": "mist",
+              "refId": "E",
+              "step": 10
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU / Memory",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": "",
+              "logBase": 1,
+              "max": 100,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "kbytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "Logs per second": "#DEDAF7",
+            "incoming": "#890F02",
+            "outgoing": "#EAB839",
+            "viewers": "#7EB26D"
+          },
+          "bars": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 7,
+          "isNew": true,
+          "legend": {
+            "avg": true,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(mist_sessions_count{instance=\"$srv\"}[$bwint])",
+              "intervalFactor": 2,
+              "legendFormat": "{{sessType}}",
+              "metric": "mist",
+              "refId": "A",
+              "step": 10
+            },
+            {
+              "expr": "rate(mist_logs{instance=\"$srv\"}[$bwint])",
+              "intervalFactor": 2,
+              "legendFormat": "Logs per second",
+              "refId": "B",
+              "step": 10
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Sessions/s  - Logs/s",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "logBase": 2,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "title": "Health"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "300px",
+      "panels": [
+        {
+          "aliasColors": {
+            "cached": "#FCEACA",
+            "incoming": "#890F02",
+            "outgoing": "#EAB839",
+            "viewers": "#7EB26D"
+          },
+          "bars": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 3,
+          "isNew": true,
+          "legend": {
+            "alignAsTable": false,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "cached",
+              "yaxis": 2
+            }
+          ],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "mist_sessions_total{instance=\"$srv\"}",
+              "intervalFactor": 2,
+              "legendFormat": "{{sessType}}",
+              "metric": "mist_se",
+              "refId": "A",
+              "step": 10
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Sessions",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "Download": "#890F02",
+            "Upload": "#7EB26D",
+            "download": "#890F02",
+            "upload": "#7EB26D"
+          },
+          "bars": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 1,
+          "isNew": true,
+          "legend": {
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Upload",
+              "yaxis": 2
+            }
+          ],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(mist_bw_total{instance=\"$srv\",direction=\"down\"}[$bwint])*8",
+              "intervalFactor": 2,
+              "legendFormat": "Download",
+              "metric": "mist",
+              "refId": "A",
+              "step": 10
+            },
+            {
+              "expr": "rate(mist_bw_total{instance=\"$srv\",direction=\"up\"}[$bwint])*8",
+              "intervalFactor": 2,
+              "legendFormat": "Upload",
+              "refId": "B",
+              "step": 10
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Bandwidth",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "bps",
+              "label": "Down",
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "bps",
+              "label": "Up",
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "title": "Sessions"
+    }
+  ],
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {
+    "now": true,
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "templating": {
+    "list": [
+      {
+        "allFormat": "glob",
+        "current": {},
+        "datasource": "${DS_PROMETHEUS}",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Server",
+        "multi": false,
+        "multiFormat": "glob",
+        "name": "srv",
+        "options": [],
+        "query": "label_values(instance)",
+        "refresh": 1,
+        "regex": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allFormat": "glob",
+        "auto": true,
+        "auto_count": 50,
+        "current": {
+          "tags": [],
+          "text": "auto",
+          "value": "$__auto_interval"
+        },
+        "datasource": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Data accuracy",
+        "multi": false,
+        "multiFormat": "glob",
+        "name": "bwint",
+        "options": [
+          {
+            "selected": true,
+            "text": "auto",
+            "value": "$__auto_interval"
+          },
+          {
+            "selected": false,
+            "text": "20s",
+            "value": "20s"
+          },
+          {
+            "selected": false,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "2m",
+            "value": "2m"
+          },
+          {
+            "selected": false,
+            "text": "5m",
+            "value": "5m"
+          }
+        ],
+        "query": "20s,1m,2m,5m",
+        "refresh": 0,
+        "type": "interval"
+      }
+    ]
+  },
+  "annotations": {
+    "list": []
+  },
+  "refresh": "1m",
+  "schemaVersion": 12,
+  "version": 6,
+  "links": [],
+  "gnetId": 1096,
+  "description": "The MistServer dashboard as demo'ed on this page: http://mistserver.org/mistserver?performance"
+}

@@ -1,0 +1,1202 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS-SERVER",
+      "label": "prometheus-server",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.3.2"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "editMode": false,
+  "editable": true,
+  "gnetId": 2485,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": false,
+  "rows": [
+    {
+      "collapse": false,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS-SERVER}",
+          "description": "Average percent of time spent in a particular state over all server CPUs\n\n*Below, \"the cpu\" refers to an average over all the cpu's\n(as measured by taking the slope of the line between the total seconds spent by the cpu in  a particular mode in the last successful scrape, and the total  seconds spent by the cpu in  a particular mode in the most recent successful scrape, but not going back farther than 5 minutes [scrape interval is every 2s])",
+          "fill": 1,
+          "id": 1,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "(avg  (irate(node_cpu{mode=\"idle\", instance=~\"$server\"}[5m])) * 100)",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "idle",
+              "refId": "A",
+              "step": 20
+            },
+            {
+              "expr": "(avg  (irate(node_cpu{mode=\"iowait\", instance=~\"$server\"}[5m])) * 100)",
+              "format": "time_series",
+              "hide": true,
+              "intervalFactor": 2,
+              "legendFormat": "IO/wait",
+              "refId": "B",
+              "step": 60
+            },
+            {
+              "expr": "(avg  (irate(node_cpu{mode=\"user\", instance=~\"$server\"}[5m])) * 100)",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "user",
+              "refId": "C",
+              "step": 20
+            },
+            {
+              "expr": "(avg  (irate(node_cpu{mode=\"system\", instance=~\"$server\"}[5m])) * 100)",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "system",
+              "refId": "D",
+              "step": 20
+            },
+            {
+              "expr": "(avg  (irate(node_cpu{mode=\"softirq\", instance=~\"$server\"}[5m])) * 100)",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "soft irq",
+              "refId": "E",
+              "step": 20
+            },
+            {
+              "expr": "(avg  (irate(node_cpu{mode=\"irq\", instance=~\"$server\"}[5m])) * 100)",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "irq",
+              "refId": "F",
+              "step": 20
+            },
+            {
+              "expr": "(avg  (irate(node_cpu{mode=\"steal\", instance=~\"$server\"}[5m])) * 100)",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "steal",
+              "refId": "G",
+              "step": 20
+            },
+            {
+              "expr": "(avg  (irate(node_cpu{mode=\"guest\", instance=~\"$server\"}[5m])) * 100)",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "guest",
+              "refId": "H",
+              "step": 20
+            },
+            {
+              "expr": "(avg  (irate(node_cpu{mode=\"nice\", instance=~\"$server\"}[5m])) * 100)",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "nice",
+              "refId": "I",
+              "step": 20
+            },
+            {
+              "expr": "100 - (avg  (irate(node_cpu{mode=\"idle\", instance=~\"$server\"}[5m])) * 100) - (avg  (irate(node_cpu{mode=\"user\", instance=~\"$server\"}[5m])) * 100) -(avg  (irate(node_cpu{mode=\"system\", instance=~\"$server\"}[5m])) * 100) - (avg  (irate(node_cpu{mode=\"softirq\", instance=~\"$server\"}[5m])) * 100) - (avg  (irate(node_cpu{mode=\"irq\", instance=~\"$server\"}[5m])) * 100) - (avg  (irate(node_cpu{mode=\"steal\", instance=~\"$server\"}[5m])) * 100) - (avg  (irate(node_cpu{mode=\"guest\", instance=~\"$server\"}[5m])) * 100) - (avg  (irate(node_cpu{mode=\"nice\", instance=~\"$server\"}[5m])) * 100)",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "IO/wait estimated",
+              "refId": "J",
+              "step": 20
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU Usage % (Stacked)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS-SERVER}",
+          "description": "System load, calculated over the past 1, 5, and 15 minutes",
+          "fill": 0,
+          "id": 3,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_load1{instance=~\"$server\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "load 1m",
+              "refId": "A",
+              "step": 20
+            },
+            {
+              "expr": "node_load5{instance=~\"$server\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "load 5m",
+              "refId": "B",
+              "step": 20
+            },
+            {
+              "expr": "node_load15{instance=~\"$server\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "load 15m",
+              "refId": "C",
+              "step": 20
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "System load",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS-SERVER}",
+          "description": "Memory Cached",
+          "fill": 1,
+          "id": 2,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_memory_Cached{instance=~\"$server\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "memory cached",
+              "refId": "A",
+              "step": 10
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Memory Cached",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS-SERVER}",
+          "description": "Sum of the read/write disk usage of $disk1\n\n(as measured by taking the slope of the line between the total bytes read/written in the last successful scrape, and the total bytes read/written in the most recent successful scrape, but not going back farther than 5 minutes [scrape interval is every 2s])",
+          "fill": 1,
+          "id": 4,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum by (instance) (irate(node_disk_bytes_read{device=~\"$disk1\", instance=~\"$server\"}[5m]))",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "read",
+              "refId": "A",
+              "step": 20
+            },
+            {
+              "expr": "sum by (instance) (irate(node_disk_bytes_written{device=~\"$disk1\", instance=~\"$server\"}[5m]))",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "write",
+              "refId": "B",
+              "step": 20
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Disk usage /dev/$disk1",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS-SERVER}",
+          "description": "Read/Write Bytes/second of $disk2\n\n(as measured by taking the slope of the line between the total bytes read/written in the last successful scrape, and the total bytes read/written in the most recent successful scrape, but not going back farther than 5 minutes [scrape interval is every 2s])",
+          "fill": 1,
+          "id": 6,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum by (instance) (irate(node_disk_bytes_read{device=~\"$disk2\", instance=~\"$server\"}[5m]))",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "read",
+              "refId": "A",
+              "step": 20
+            },
+            {
+              "expr": "sum by (instance) (irate(node_disk_bytes_written{device=~\"$disk2\", instance=~\"$server\"}[5m]))",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "write",
+              "refId": "B",
+              "step": 20
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Disk Usage /dev/$disk2",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS-SERVER}",
+          "description": "Graph of bytes /second vs. time of data received by the p4p2 device\n(as measured by taking the slope of the line between the total bytes received in the last successful scrape, and the total bytes received in the most recent successful scrape, but not going back farther than 5 minutes [scrape interval is every 2s])",
+          "fill": 1,
+          "id": 5,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(node_network_receive_bytes{instance=~\"$server\",device=\"p4p2\"}[5m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "bytes received/sec",
+              "refId": "A",
+              "step": 20
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Network Statistics (Reception)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS-SERVER}",
+          "description": "Graph of bytes /second vs. time of data transmitted from the p4p2 device\n(as measured by taking the slope of the line between the total bytes transmitted in the last successful scrape, and the total bytes transmitted in the most recent successful scrape, but not going back farther than 5 minutes [scrape interval is every 2s])",
+          "fill": 1,
+          "id": 7,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(node_network_transmit_bytes{instance=~\"$server\",device=\"p4p2\"}[5m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "bytes transmitted /sec",
+              "refId": "A",
+              "step": 20
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Network Statistics (Transmition)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 249,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS-SERVER}",
+          "description": "Memory Used",
+          "fill": 1,
+          "id": 8,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 9,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_memory_MemTotal{instance=~\"$server\"} - node_memory_MemFree{instance=~\"$server\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "used memory",
+              "refId": "A",
+              "step": 20
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Memory Used",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_PROMETHEUS-SERVER}",
+          "description": "(free memory/total memory )*100",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 9,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "%",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": true,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "expr": "(node_memory_MemFree{instance=~\"$server\"} / node_memory_MemTotal{instance=~\"$server\"}) * 100",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "refId": "A",
+              "step": 120
+            },
+            {
+              "expr": "node_memory_MemFree{instance=~\"$server\"} /(1024*1024*1024)",
+              "format": "time_series",
+              "hide": true,
+              "intervalFactor": 2,
+              "refId": "B",
+              "step": 120
+            },
+            {
+              "expr": "node_memory_MemTotal{instance=~\"$server\"}/(1024*1024*1024)",
+              "format": "time_series",
+              "hide": true,
+              "intervalFactor": 2,
+              "refId": "C",
+              "step": 120
+            }
+          ],
+          "thresholds": "10, 20",
+          "title": "Free memory",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS-SERVER}",
+          "description": "Free Memory",
+          "fill": 1,
+          "id": 10,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_memory_MemFree{instance=~\"$server\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "Free Memory",
+              "refId": "A",
+              "step": 20
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Memory Free",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS-SERVER}",
+          "description": "available memory",
+          "fill": 1,
+          "id": 11,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_memory_MemAvailable{instance=~\"$server\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "available memory",
+              "refId": "A",
+              "step": 20
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Memory Available",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_PROMETHEUS-SERVER}",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "server",
+        "options": [],
+        "query": "label_values(node_boot_time, instance)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_PROMETHEUS-SERVER}",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "disk1",
+        "options": [],
+        "query": "label_values(node_disk_bytes_read, device)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_PROMETHEUS-SERVER}",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "disk2",
+        "options": [],
+        "query": "label_values(node_disk_bytes_read, device)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "2017-06-19T18:37:35.784Z",
+    "to": "2017-06-19T20:56:10.176Z"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "PrometheusServerMonitor",
+  "version": 14,
+  "description": "A basic monitoring dashboard for a prometheus server"
+}

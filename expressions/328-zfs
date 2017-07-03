@@ -1,0 +1,9 @@
+rate(zfs_zpool_collecterrors{poolname=~"$pool"}[$interval])
+rate(zfs_zpool_errors_total{poolname=~"$pool", vdevtype="root"}[$interval])
+zfs_zpool_poolstate{poolname=~"$pool"}
+zfs_zpool_poolstatus{poolname=~"$pool"}
+irate(zfs_zpool_vdevops_total{poolname=~"$pool", vdevtype="root"}[30s])
+rate(zfs_zpool_vdevbytes_total{poolname =~ "$pool", vdevtype="root"}[30s])
+zfs_zpool_allocated_bytes{ vdevtype="root"}
+zfs_zpool_space_bytes{ vdevtype="root"}
+zfs_zpool_space_bytes{ vdevtype="root", poolname =~ "$pool"} - zfs_zpool_allocated_bytes{ vdevtype="root"}

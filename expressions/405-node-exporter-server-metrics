@@ -1,0 +1,39 @@
+count(node_cpu{instance=~"$node", mode="system"})
+sum by (mode)(irate(node_cpu{mode="system",instance=~'$node'}[5m]))
+sum by (mode)(irate(node_cpu{mode='user',instance=~'$node'}[5m]))
+sum by (mode)(irate(node_cpu{mode='nice',instance=~'$node'}[5m]))
+sum by (mode)(irate(node_cpu{mode='iowait',instance=~'$node'}[5m]))
+sum by (mode)(irate(node_cpu{mode='steal',instance=~'$node'}[5m]))
+sum by (mode)(irate(node_cpu{mode='idle',instance=~'$node'}[5m]))
+sum by (mode)(irate(node_cpu{mode='irq',instance=~'$node'}[5m]))
+sum by (mode)(irate(node_cpu{mode='softirq',instance=~'$node'}[5m]))
+sum by (mode)(irate(node_cpu{mode='guest',instance=~'$node'}[5m]))
+( node_memory_MemTotal{instance=~'$node'} - node_memory_MemFree{instance=~'$node'} - node_memory_Buffers{instance=~'$node'} - node_memory_Cached{instance=~'$node'} - node_memory_SwapCached{instance=~'$node'} - node_memory_Slab{instance=~'$node'} - node_memory_PageTables{instance=~'$node'} - node_memory_VmallocUsed{instance=~'$node'} )
+node_memory_Buffers{instance=~'$node'}
+node_memory_Cached{instance=~'$node'}
+node_memory_MemFree{instance=~'$node'}
+node_memory_Slab{instance=~'$node'}
+node_memory_SwapCached{instance=~'$node'}
+node_memory_PageTables{instance=~'$node'}
+node_memory_VmallocUsed{instance=~'$node'}
+(node_memory_SwapTotal{instance=~'$node'} - node_memory_SwapFree{instance=~'$node'})
+node_memory_Committed_AS{instance=~'$node'}
+node_memory_Mapped{instance=~'$node'}
+node_memory_Active{instance=~'$node'}
+node_memory_Inactive{instance=~'$node'}
+node_load1{instance=~"$node"}
+100.0 - 100 * (node_filesystem_free{instance=~'$node',device !~'tmpfs',device!~'by-uuid'} / node_filesystem_size{instance=~'$node',device !~'tmpfs',device!~'by-uuid'})
+irate(node_disk_io_time_ms{instance=~"$node"}[5m])/10
+irate(node_disk_reads_completed{instance=~'$node'}[5m])
+irate(node_disk_writes_completed{instance=~'$node'}[5m])
+irate(node_disk_sectors_read{instance=~'$node'}[5m]) * 512
+irate(node_disk_sectors_written{instance=~'$node'}[5m]) * 512
+irate(node_context_switches{instance=~"$node"}[5m])
+irate(node_network_receive_bytes{instance=~'$node'}[5m])*8
+irate(node_network_transmit_bytes{instance=~'$node'}[5m])*8
+node_netstat_Tcp_CurrEstab{instance=~'$node'}
+irate(node_netstat_Udp_InDatagrams{instance=~"$node"}[5m])
+irate(node_netstat_Udp_InErrors{instance=~"$node"}[5m])
+irate(node_netstat_Udp_OutDatagrams{instance=~"$node"}[5m])
+irate(node_netstat_Udp_NoPorts{instance=~"$node"}[5m])
+node_nf_conntrack_entries_limit{instance=~"$node"} - node_nf_conntrack_entries{instance=~"$node"}

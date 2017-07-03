@@ -75,5 +75,11 @@ elif [[ "$1" == "download" ]];then shift
   filename="$2"
   curl -s "https://grafana.com/api/${url}" > dashboards/${filename}
 
+elif [[ "$1" == "extract_expr" ]];then shift
+  # jq -r '.rows?[]|.panels?[]|.targets?[]|.expr?' 
+  jq -r '.rows?|.[].panels?|.[]|.targets?//empty|.[]|.expr?'
+
+
+
 fi
 

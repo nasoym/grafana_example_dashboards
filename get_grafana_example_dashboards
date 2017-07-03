@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+
+set -eufo pipefail
+trap 'echo "$0: line ${LINENO}: exiting because of error";exit 1' ERR
+
+while getopts "a:h?" options; do case $options in
+  a) a="$OPTARG" ;;
+  h|?) help; exit ;;
+esac; done; shift $((OPTIND - 1))
+
+if [[ "$#" -eq 0 ]];then
+  :
+
+elif [[ "$1" == "load_all" ]];then shift
+
+  $0 get \
+    | $0 html2json \
+    | $0 json2url \
+    | parallel \
+      -j 300% \
+      -v \
+      -C ' ' \
+      "$0 download {1} {2}"
+
+elif [[ "$1" == "get" ]];then shift
+  : ${data_source:="prometheus"}
+  curl -s "https://grafana.com/dashboards?dataSource=${data_source}"  \
+    | hxnormalize -x 2>/dev/null || true
+
+elif [[ "$1" == "html2json" ]];then shift
+  hxselect script 2>/dev/null \
+    | hxnormalize -x 2>/dev/null \
+    | sed \
+      -e '/window\.__data=/!d' \
+      -e 's/^[^{]*{/{/g' \
+      -e 's/}[^}]*$/}/g' \
+    |  jq .
+
+elif [[ "$1" == "json2mini" ]];then shift
+  jq ".dashboards.data.items\
+    |map({id,orgSlug,slug,download:(.links[]|select(.rel==\"download\")|.href)})\
+"
+
+elif [[ "$1" == "json2url" ]];then shift
+  jq -r ".dashboards.data.items\
+|map({id,orgSlug,slug,download:(.links[]|select(.rel==\"download\")|.href)})\
+|.[]\
+|\"\(.download) \(.id)-\(.slug)\"\
+"
+
+elif [[ "$1" == "clean1" ]];then shift
+    hxselect '.list__row' \
+    | hxremove '.list__itemFooter' \
+    | hxremove '.list__item--narrow' \
+    | hxremove '.list__itemImage' \
+    | hxnormalize -x 2>/dev/null || true
+
+elif [[ "$1" == "html2md" ]];then shift
+  pandoc -s -f html -t markdown -o - 
+
+elif [[ "$1" == "md2ids" ]];then shift
+  sed \
+    -e '/^-   \[\].*/!d' \
+    -e 's/.*\/\([0-9]*\)).*/\1/g'
+
+elif [[ "$1" == "id2file" ]];then shift
+  curl -s "https://grafana.com/api/dashboards/${1}/revisions/5/download"  \
+    > dashboards/${1}.json
+
+elif [[ "$1" == "download" ]];then shift
+  url="$1"
+  filename="$2"
+  curl -s "https://grafana.com/api/${url}" > dashboards/${filename}
+
+fi
+

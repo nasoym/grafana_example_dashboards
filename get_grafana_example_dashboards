@@ -17,7 +17,7 @@ elif [[ "$1" == "load_all" ]];then shift
     | $0 html2json \
     | $0 json2url \
     | parallel \
-      -j 300% \
+      -j 200% \
       -v \
       -C ' ' \
       "$0 download {1} {2}"

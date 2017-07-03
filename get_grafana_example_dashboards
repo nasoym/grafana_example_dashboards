@@ -36,6 +36,9 @@ elif [[ "$1" == "html2json" ]];then shift
       -e 's/}[^}]*$/}/g' \
     |  jq .
 
+elif [[ "$1" == "json2items" ]];then shift
+  jq ".dashboards.data.items"
+
 elif [[ "$1" == "json2mini" ]];then shift
   jq ".dashboards.data.items\
     |map({id,orgSlug,slug,download:(.links[]|select(.rel==\"download\")|.href)})\

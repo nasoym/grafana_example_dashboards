@@ -1,0 +1,9 @@
+rate(haproxy_backend_bytes_in_total{backend=~"$backend"}[5m])
+rate(haproxy_backend_connections_total{backend="$backend"}[10m])
+rate(haproxy_backend_bytes_out_total{backend="$backend"}[5m])
+sum(rate(haproxy_backend_http_responses_total{backend=~"$backend"}[10m])) by (backend, code)
+haproxy_backend_current_session_rate{backend=~"$backend"}
+haproxy_backend_up{backend=~"$backend"}
+haproxy_backend_weight{backend=~"$backend"}
+rate(haproxy_backend_bytes_in_total{backend=~"$backend"}[10m])
+rate(haproxy_backend_bytes_out_total{backend=~"$backend"}[10m])

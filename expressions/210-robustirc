@@ -1,0 +1,15 @@
+job:committed:rate5m_sum
+raft_isleader > 0
+job:availability:topk_sum_rate
+rate(process_cpu_seconds_total{job="robustirc"}[2m])
+job_instance:availability:sum_rate
+process_resident_memory_bytes{job="robustirc"}
+time() - process_start_time_seconds{job="robustirc"}
+raftmetrics_raft_replication_heartbeat_alp_robustirc_net:60667{quantile="0.99"}
+raftmetrics_raft_replication_heartbeat_vultr_robustirc_net:60667{quantile="0.99"}
+raftmetrics_raft_replication_heartbeat_ridcully_robustirc_net:60667{quantile="0.99"}
+raftmetrics_raft_commitTime{quantile="0.99"}
+rate(raftmetrics_raft_httptransport_handled[2m])
+rate(raftmetrics_raft_httptransport_latency_count[2m])
+avg(irc_sessions)
+topk(5, avg(rate(irc_messages_processed[2m])) by (command))

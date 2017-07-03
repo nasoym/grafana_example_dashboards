@@ -1,0 +1,30 @@
+node_time{alias="$host"} - node_boot_time{alias="$host"}
+count(node_cpu{mode="user", alias="$host"})
+node_memory_MemAvailable{alias="$host"}
+(node_memory_MemAvailable{alias="$host"} or (node_memory_MemFree{alias="$host"} + node_memory_Buffers{alias="$host"} + node_memory_Cached{alias="$host"})) / node_memory_MemTotal{alias="$host"} * 100
+sum(rate(node_cpu{alias="$host"}[$interval])) by (mode) * 100 / count_scalar(node_cpu{mode="user", alias="$host"}) or sum(irate(node_cpu{alias="$host"}[5m])) by (mode) * 100 / count_scalar(node_cpu{mode="user", alias="$host"})
+node_load1{alias="$host"}
+node_load5{alias="$host"}
+node_load15{alias="$host"}
+node_memory_MemTotal{alias="$host"}
+node_memory_MemTotal{alias="$host"} - (node_memory_MemAvailable{alias="$host"} or (node_memory_MemFree{alias="$host"} + node_memory_Buffers{alias="$host"} + node_memory_Cached{alias="$host"}))
+node_memory_MemAvailable{alias="$host"} or (node_memory_MemFree{alias="$host"} + node_memory_Buffers{alias="$host"} + node_memory_Cached{alias="$host"})
+node_memory_MemTotal{alias="$host"} - (node_memory_MemFree{alias="$host"} + node_memory_Buffers{alias="$host"} + node_memory_Cached{alias="$host"})
+node_memory_MemFree{alias="$host"}
+node_memory_Buffers{alias="$host"}
+node_memory_Cached{alias="$host"}
+rate(node_forks{alias="$host"}[$interval]) or irate(node_forks{alias="$host"}[5m])
+node_procs_running{alias="$host"}
+node_procs_blocked{alias="$host"}
+rate(node_context_switches{alias="$host"}[$interval]) or irate(node_context_switches{alias="$host"}[5m])
+rate(node_intr{alias="$host"}[$interval]) or irate(node_intr{alias="$host"}[5m])
+rate(node_network_receive_bytes{alias="$host", device!="lo"}[$interval]) or irate(node_network_receive_bytes{alias="$host", device!="lo"}[5m])
+rate(node_network_transmit_bytes{alias="$host", device!="lo"}[$interval]) or irate(node_network_transmit_bytes{alias="$host", device!="lo"}[5m])
+sum(increase(node_network_receive_bytes{alias="$host", device!="lo"}[1h]))
+sum(increase(node_network_transmit_bytes{alias="$host", device!="lo"}[1h]))
+node_memory_SwapTotal{alias="$host"} - node_memory_SwapFree{alias="$host"}
+node_memory_SwapFree{alias="$host"}
+rate(node_vmstat_pswpin{alias="$host"}[$interval]) * 4096 or irate(node_vmstat_pswpin{alias="$host"}[5m]) * 4096
+rate(node_vmstat_pswpout{alias="$host"}[$interval]) * 4096 or irate(node_vmstat_pswpout{alias="$host"}[5m]) * 4096
+rate(node_vmstat_pgpgin{alias="$host"}[$interval]) * 1024 or irate(node_vmstat_pgpgin{alias="$host"}[5m]) * 1024
+rate(node_vmstat_pgpgout{alias="$host"}[$interval]) * 1024 or irate(node_vmstat_pgpgout{alias="$host"}[5m]) * 1024
